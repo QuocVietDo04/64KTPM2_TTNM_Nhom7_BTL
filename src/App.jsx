@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/icons/facebook.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import { Button } from "@heroui/react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -28,8 +29,12 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <Button color="primary" size="lg" type="reset" className="text-red-400 bg-red-400">
+        Button
+      </Button>
+      <button className="text-red-400 bg-red-400">Button</button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
