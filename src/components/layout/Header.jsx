@@ -1,7 +1,6 @@
 import React from "react";
 import { Button as HeroUIButton, Input } from "@heroui/react";
 import { Icon } from "@iconify/react";
-import NavbarButton from "../shared/NavbarButton";
 
 const Header = () => {
     return (
