@@ -4,5 +4,6 @@
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  @apply text-gray-900 bg-gray-100;
 }
 

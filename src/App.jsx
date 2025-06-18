@@ -1,31 +1,27 @@
-import { useState } from "react";
-import { Button } from "@heroui/react";
-import Header from "./components/Header";
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+
+// Import các trang (pages) ở đây
+import HomePage from './pages/HomePage';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-    <Header />
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <Button color="primary" size="lg" type="reset" className="text-red-400 bg-red-400">
-        Button
-      </Button>
-      <button className="text-red-400 bg-red-400">Button</button>
-    </>
+    <Router> {/* BrowserRouter bao bọc toàn bộ ứng dụng để quản lý định tuyến */}
+      <Layout> {/* Component Layout bao bọc Routes để áp dụng cấu trúc chung */}
+        <Routes> {/* Routes định nghĩa các tuyến đường khác nhau */}
+          {/* Định nghĩa các Route cho từng trang */}
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} /> */}
+
+          {/* Bạn có thể thêm một Route catch-all cho trang 404 */}
+          {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
