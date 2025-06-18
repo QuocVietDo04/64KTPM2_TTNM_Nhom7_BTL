@@ -1,5 +1,5 @@
 import React from "react";
-import NavbarButton from "../common/NavbarButton";
+import NavbarButton from "../shared/NavbarButton";
 
 const Navbar = () => {
     return (
