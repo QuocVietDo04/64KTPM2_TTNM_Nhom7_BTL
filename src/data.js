@@ -5,7 +5,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/1.webp"
+    "image": "products/1.webp",
+    "target_audience": ["Trẻ em"],
+    "origin": "Việt Nam",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Thực phẩm bảo vệ sức khỏe OMEGA 3 PLUS Kenko hỗ trợ não bộ, thị lực và sức khoẻ tim mạch (120 viên)",
@@ -13,7 +16,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/2.webp"
+    "image": "products/2.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Thái Lan",
+    "price_range": "Trên 500.000₫"
   },
   {
     "product_name": "Viên uống Omega 3-6-9 Pharmekal hỗ trợ giảm nguy cơ xơ vữa động mạch (100 viên)",
@@ -21,7 +27,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/3.webp"
+    "image": "products/3.webp",
+    "target_audience": ["Người lớn"],
+    "origin": "Hoa Kỳ",
+    "price_range": "100.000₫ đến 300.000₫"
   },
   {
     "product_name": "Thực phẩm bảo vệ sức khỏe Bioamicus Omega-3 hỗ trợ tốt cho mắt và não (30ml)",
@@ -29,7 +38,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/4.webp"
+    "image": "products/4.webp",
+    "target_audience": ["Trẻ em"],
+    "origin": "Anh",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Omega 3 Power DAO Nordic Health hỗ trợ tăng cường sức khoẻ tim mạch, giảm mỡ máu (120 viên)",
@@ -37,7 +49,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/5.webp"
+    "image": "products/5.webp",
+    "target_audience": ["Người lớn"],
+    "origin": "Hoa Kỳ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Pregnacare Plus Omega-3 Vitabiotics bổ sung Vitamin, Omega-3 và khoáng chất (56 viên)",
@@ -45,7 +60,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/6.webp"
+    "image": "products/6.webp",
+    "target_audience": ["Phụ nữ có thai"],
+    "origin": "Anh",
+    "price_range": "Trên 500.000₫"
   },
   {
     "product_name": "Viên uống Omega 3-6-9 NatureCare giảm nguy cơ xơ vữa động mạch, bảo vệ sức khỏe tim mạch (3 vỉ x 20 viên)",
@@ -53,7 +71,10 @@ const productsData = [
     "original_price": 499000,
     "unit": "Hộp",
     "discount": "20%",
-    "image": "products/7.webp"
+    "image": "products/7.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Ấn Độ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Siro Fitobimbi Omega Junior Gocce Pharmalife bổ sung acid béo không no Omega-3, Omega-6 (30ml)",
@@ -61,15 +82,21 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/8.webp"
+    "image": "products/8.webp",
+    "target_audience": ["Trẻ em"],
+    "origin": "Việt Nam",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
-    "product_name": "Viên nhai Nature's Way Kids Smart Vita Gummies Omega-3 DHA Fish Oil hỗ trợ tăng cường sức khỏe (60 viên)",
+    "product_name": "Viên nhai Nature's Way Kids Smart Vita Gummies Omega-3 DHA Fish Oil hỗ trợ tăng cường sức khỏe (60 viên)",
     "current_price": 332000,
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/9.webp"
+    "image": "products/9.webp",
+    "target_audience": ["Trẻ em"],
+    "origin": "Anh",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Pregnacare Max Omega 3 DHA Vitabiotics cung cấp vitamin và khoáng chất cho phụ nữ mang thai (84 viên)",
@@ -77,7 +104,10 @@ const productsData = [
     "original_price": 486000,
     "unit": "Hộp",
     "discount": "20%",
-    "image": "products/10.webp"
+    "image": "products/10.webp",
+    "target_audience": ["Phụ nữ có thai"],
+    "origin": "Anh",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên nang mềm NatureCare Omega 369 bổ sung Omega, giảm nguy cơ xơ vữa động mạch (6 vỉ x 20 viên)",
@@ -85,15 +115,21 @@ const productsData = [
     "original_price": 431000,
     "unit": "Hộp",
     "discount": "20%",
-    "image": "products/11.webp"
+    "image": "products/11.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Ấn Độ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
-    "product_name": "Viên uống Omexxel Ginkgo 120 Excelife tăng cường tuần hoàn máu não, tốt cho tim mạch (2 vỉ x 15 viên)",
+    "product_name": "Viên uống Omexxel Ginkgo 120 Excelife tăng cường tuần hoàn máu não, tốt cho tim mạch (2 vỉ x 15 viên)",
     "current_price": 248000,
     "original_price": 310000,
     "unit": "Hộp",
     "discount": "20%",
-    "image": "products/12.webp"
+    "image": "products/12.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Hoa Kỳ",
+    "price_range": "100.000₫ đến 300.000₫"
   },
   {
     "product_name": "Viên nang mềm Omexxel Arthri hỗ trợ tăng tiết dịch khớp, giảm đau do lão hóa khớp (3 vỉ x 10 viên)",
@@ -101,15 +137,21 @@ const productsData = [
     "original_price": null,
     "unit": "Lọ",
     "discount": null,
-    "image": "products/13.webp"
+    "image": "products/13.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Hoa Kỳ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
-    "product_name": "Viên uống Omexxel 3-6-9 Excelife tốt cho trí não, giúp bổ mắt (100 viên)",
+    "product_name": "Viên uống Omexxel 3-6-9 Excelife tốt cho trí não, giúp bổ mắt (100 viên)",
     "current_price": 550000,
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/14.webp"
+    "image": "products/14.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Hoa Kỳ",
+    "price_range": "Trên 500.000₫"
   },
   {
     "product_name": "Viên uống Omexxel 3-6-9 Premium hỗ trợ tốt cho não và mắt (100 viên)",
@@ -117,7 +159,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/15.webp"
+    "image": "products/15.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Hoa Kỳ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Omega Plus 10 Vitamins For Life chống oxy hóa, hỗ trợ tốt cho tim mạch (Hộp 60 viên)",
@@ -125,7 +170,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/16.webp"
+    "image": "products/16.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Hoa Kỳ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống hỗ trợ phụ nữ mang thai và phụ nữ cho con bú Brauer Ultra Pure Dha For Pregnancy & Breastfeeding (60 viên)",
@@ -133,7 +181,10 @@ const productsData = [
     "original_price": 360000,
     "unit": "Hộp",
     "discount": "5%",
-    "image": "products/17.webp"
+    "image": "products/17.webp",
+    "target_audience": ["Phụ nữ có thai"],
+    "origin": "Anh",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Siro Omega Vit Plus+ Botafarma hỗ trợ tăng khả năng chống oxy hóa, tốt cho não bộ và mắt (100ml)",
@@ -141,7 +192,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/18.webp"
+    "image": "products/18.webp",
+    "target_audience": ["Trẻ em", "Người lớn"],
+    "origin": "Thái Lan",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Thuốc Dasbrain Pharmametics hỗ trợ các chức năng não bộ (30 viên)",
@@ -149,7 +203,10 @@ const productsData = [
     "original_price": 649000,
     "unit": "Hộp",
     "discount": "15%",
-    "image": "products/19.webp"
+    "image": "products/19.webp",
+    "target_audience": ["Trẻ em", "Người lớn"],
+    "origin": "Việt Nam",
+    "price_range": "Trên 500.000₫"
   },
   {
     "product_name": "Thực phẩm bảo vệ sức khỏe Omega Vit Botafarma hỗ trợ tăng khả năng chống oxy hóa, tốt cho não bộ và mắt (100ml)",
@@ -157,7 +214,10 @@ const productsData = [
     "original_price": 480000,
     "unit": "Hộp",
     "discount": "10%",
-    "image": "products/20.webp"
+    "image": "products/20.webp",
+    "target_audience": ["Trẻ em", "Người lớn"],
+    "origin": "Thái Lan",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Mega-Cal 1000 Vitamins For Life giúp bổ sung canxi, chống loãng xương (60 viên)",
@@ -165,15 +225,21 @@ const productsData = [
     "original_price": 696000,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/21.webp"
+    "image": "products/21.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi", "Phụ nữ có thai"],
+    "origin": "Hoa Kỳ",
+    "price_range": "Trên 500.000₫"
   },
   {
-    "product_name": "Viên uống Omexxel Calk2 Excelife bổ sung Canxi, Vitamin D3 (3 vỉ x 10 viên)",
+    "product_name": "Viên uống Omexxel Calk2 Excelife bổ sung Canxi, Vitamin D3 (3 vỉ x 10 viên)",
     "current_price": 370000,
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/22.webp"
+    "image": "products/22.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Hoa Kỳ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên nang mềm Omexxel Cordy hỗ trợ tăng sức đề kháng (3 vỉ x 10 viên)",
@@ -181,7 +247,10 @@ const productsData = [
     "original_price": 510000,
     "unit": "Hộp",
     "discount": "10%",
-    "image": "products/23.webp"
+    "image": "products/23.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Hoa Kỳ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Brauer Baby & Kids Ultra Pure DHA hỗ trợ phát triển não bộ, sức khỏe cho mắt (60 viên)",
@@ -189,7 +258,10 @@ const productsData = [
     "original_price": null,
     "unit": "Gói",
     "discount": null,
-    "image": "products/24.webp"
+    "image": "products/24.webp",
+    "target_audience": ["Trẻ em"],
+    "origin": "Anh",
+    "price_range": "100.000₫ đến 300.000₫"
   },
   {
     "product_name": "Viên uống Blackmores Omega Double High Strength Fish Oil bổ sung omega (90 viên)",
@@ -197,7 +269,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/25.webp"
+    "image": "products/25.webp",
+    "target_audience": ["Người lớn", "Người cao tuổi"],
+    "origin": "Ấn Độ",
+    "price_range": "100.000₫ đến 300.000₫"
   },
   {
     "product_name": "Viên nhai Nature's Way Kids Smart Bursts DHA 300mg Triple Strength hỗ trợ phát triển não bộ (50 viên)",
@@ -205,7 +280,10 @@ const productsData = [
     "original_price": null,
     "unit": "Lọ",
     "discount": null,
-    "image": "products/26.webp"
+    "image": "products/26.webp",
+    "target_audience": ["Trẻ em"],
+    "origin": "Anh",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Blackmores Evening Primrose Oil hỗ trợ làn da khỏe mạnh, dưỡng ẩm da (190 viên)",
@@ -213,7 +291,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/27.webp"
+    "image": "products/27.webp",
+    "target_audience": ["Người lớn"],
+    "origin": "Ấn Độ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Dịch truyền Lipovenoes 10% PLR Fresenius Kabi cung cấp các axit béo thiết yếu (250ml)",
@@ -221,7 +302,10 @@ const productsData = [
     "original_price": 300000,
     "unit": "Hộp",
     "discount": "20%",
-    "image": "products/28.webp"
+    "image": "products/28.webp",
+    "target_audience": ["Tất cả"],
+    "origin": "Việt Nam",
+    "price_range": "100.000₫ đến 300.000₫"
   },
   {
     "product_name": "Viên uống Procare Diamond bổ sung khoáng chất cho phụ nữ có thai và cho con bú (30 viên)",
@@ -229,7 +313,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/29.webp"
+    "image": "products/29.webp",
+    "target_audience": ["Phụ nữ có thai"],
+    "origin": "Anh",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Thuốc PM Procare Catalent bổ sung DHA, EPA, Vitamin và khoáng chất (30 viên)",
@@ -237,7 +324,10 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/30.webp"
+    "image": "products/30.webp",
+    "target_audience": ["Phụ nữ có thai"],
+    "origin": "Anh",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Viên uống Vital Pregna Doppelherz Aktiv giúp tăng cường sức khỏe và thể chất (30 viên)",
@@ -245,7 +335,10 @@ const productsData = [
     "original_price": 486000,
     "unit": "Hộp",
     "discount": "20%",
-    "image": "products/31.webp"
+    "image": "products/31.webp",
+    "target_audience": ["Phụ nữ có thai"],
+    "origin": "Hoa Kỳ",
+    "price_range": "300.000₫ đến 500.000₫"
   },
   {
     "product_name": "Sữa bột CaloSure gold Vitadairy ít đường, tăng cường sức khỏe tim mạch, hồi phục sức khỏe (900g)",
@@ -253,7 +346,11 @@ const productsData = [
     "original_price": null,
     "unit": "Hộp",
     "discount": null,
-    "image": "products/32.webp"
+    "image": "products/32.webp",
+    "target_audience": ["Người cao tuổi", "Người lớn"],
+    "origin": "Việt Nam",
+    "price_range": "300.000₫ đến 500.000₫"
   }
-]
+];
+
 export default productsData;
