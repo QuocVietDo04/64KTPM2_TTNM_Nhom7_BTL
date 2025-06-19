@@ -5,6 +5,7 @@ import Layout from './components/layout/Layout';
 
 // Import các trang (pages) ở đây
 import HomePage from './pages/HomePage';
+import OrderHistory from './pages/OrderHistory';
 import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Routes> {/* Routes định nghĩa các tuyến đường khác nhau */}
           {/* Định nghĩa các Route cho từng trang */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
