@@ -4,51 +4,131 @@ const topProductsData = [
     {
         "id": "top_prod_001",
         "product_name": "Hỗn dịch uống men vi sinh Enterogermina Gut Defense Sanofi tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
-        "current_price": 165000,
-        "original_price": 184000,
-        "unit": "Hộp",
+        "variants": [
+            {
+                "unit": "Hộp",
+                "current_price": 165000,
+                "original_price": 184000,
+                "discount": "10%"
+            },
+            {
+                "unit": "Vỉ",
+                "current_price": 92000,
+                "original_price": null,
+                "discount": null
+            },
+            {
+                "unit": "Ống",
+                "current_price": 9200,
+                "original_price": null,
+                "discount": null
+            }
+        ],
         "quantity": "Hộp 2 Vỉ x 10 Ống",
-        "discount": "10%",
         "image": "top-product/1.webp"
     },
     {
         "id": "top_prod_002",
         "product_name": "Hỗn dịch uống men vi sinh Enterogermina Gut Defense Sanofi tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
-        "current_price": 165000,
-        "original_price": 184000,
-        "unit": "Hộp",
+        "variants": [
+            {
+                "unit": "Hộp",
+                "current_price": 165000,
+                "original_price": 184000,
+                "discount": "10%"
+            },
+            {
+                "unit": "Vỉ",
+                "current_price": 92000,
+                "original_price": null,
+                "discount": null
+            },
+            {
+                "unit": "Ống",
+                "current_price": 9200,
+                "original_price": null,
+                "discount": null
+            }
+        ],
         "quantity": "Hộp 2 Vỉ x 10 Ống",
-        "discount": "10%",
         "image": "top-product/1.webp"
     },
     {
         "id": "top_prod_003",
         "product_name": "Hỗn dịch uống men vi sinh Enterogermina Gut Defense Sanofi tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
-        "current_price": 165000,
-        "original_price": 184000,
-        "unit": "Hộp",
+        "variants": [
+            {
+                "unit": "Hộp",
+                "current_price": 165000,
+                "original_price": 184000,
+                "discount": "10%"
+            },
+            {
+                "unit": "Vỉ",
+                "current_price": 92000,
+                "original_price": null,
+                "discount": null
+            },
+            {
+                "unit": "Ống",
+                "current_price": 9200,
+                "original_price": null,
+                "discount": null
+            }
+        ],
         "quantity": "Hộp 2 Vỉ x 10 Ống",
-        "discount": "10%",
         "image": "top-product/1.webp"
     },
     {
         "id": "top_prod_004",
         "product_name": "Hỗn dịch uống men vi sinh Enterogermina Gut Defense Sanofi tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
-        "current_price": 165000,
-        "original_price": 184000,
-        "unit": "Hộp",
+        "variants": [
+            {
+                "unit": "Hộp",
+                "current_price": 165000,
+                "original_price": 184000,
+                "discount": "10%"
+            },
+            {
+                "unit": "Vỉ",
+                "current_price": 92000,
+                "original_price": null,
+                "discount": null
+            },
+            {
+                "unit": "Ống",
+                "current_price": 9200,
+                "original_price": null,
+                "discount": null
+            }
+        ],
         "quantity": "Hộp 2 Vỉ x 10 Ống",
-        "discount": "10%",
         "image": "top-product/1.webp"
     },
     {
         "id": "top_prod_005",
         "product_name": "Hỗn dịch uống men vi sinh Enterogermina Gut Defense Sanofi tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
-        "current_price": 165000,
-        "original_price": 184000,
-        "unit": "Hộp",
+        "variants": [
+            {
+                "unit": "Hộp",
+                "current_price": 165000,
+                "original_price": 184000,
+                "discount": "10%"
+            },
+            {
+                "unit": "Vỉ",
+                "current_price": 92000,
+                "original_price": null,
+                "discount": null
+            },
+            {
+                "unit": "Ống",
+                "current_price": 9200,
+                "original_price": null,
+                "discount": null
+            }
+        ],
         "quantity": "Hộp 2 Vỉ x 10 Ống",
-        "discount": "10%",
         "image": "top-product/1.webp"
     },
 ];

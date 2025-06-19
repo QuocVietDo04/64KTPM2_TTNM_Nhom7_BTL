@@ -1,6 +1,6 @@
 import React from "react";
 import { topProductsData } from "../top-product";
-import ProductCard from "../features/products/components/ProductCard";
+import ProductCard from "../components/shared/ProductCard";
 import Slider from "../components/shared/Slider";
 import { Divider } from "@heroui/react";
 

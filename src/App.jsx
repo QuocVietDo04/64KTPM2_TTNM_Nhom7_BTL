@@ -5,6 +5,7 @@ import Layout from './components/layout/Layout';
 
 // Import các trang (pages) ở đây
 import HomePage from './pages/HomePage';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
   return (
@@ -13,12 +14,13 @@ function App() {
         <Routes> {/* Routes định nghĩa các tuyến đường khác nhau */}
           {/* Định nghĩa các Route cho từng trang */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<DashboardPage />} /> */}
 
           {/* Bạn có thể thêm một Route catch-all cho trang 404 */}
-          {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
         </Routes>
       </Layout>
     </Router>
