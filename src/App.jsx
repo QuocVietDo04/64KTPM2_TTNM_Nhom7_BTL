@@ -14,8 +14,8 @@ function App() {
       <Layout> {/* Component Layout bao bọc Routes để áp dụng cấu trúc chung */}
         <Routes> {/* Routes định nghĩa các tuyến đường khác nhau */}
           {/* Định nghĩa các Route cho từng trang */}
-          <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />

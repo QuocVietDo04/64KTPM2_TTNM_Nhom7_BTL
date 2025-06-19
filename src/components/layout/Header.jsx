@@ -1,10 +1,61 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button as HeroUIButton, Input } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import NavbarButton from "../shared/NavbarButton";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const [isHovered, setIsHovered] = useState(false);
+    const [isDropdownHovered, setIsDropdownHovered] = useState(false);
+    const navigate = useNavigate();
+    const timeoutRef = useRef(null);
+
+    const handleMouseEnter = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        timeoutRef.current = setTimeout(() => {
+            if (!isDropdownHovered) {
+                setIsHovered(false);
+            }
+        }, 150); // Delay 150ms trước khi ẩn dropdown
+    };
+
+    const handleDropdownMouseEnter = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+        setIsDropdownHovered(true);
+    };
+
+    const handleDropdownMouseLeave = () => {
+        setIsDropdownHovered(false);
+        timeoutRef.current = setTimeout(() => {
+            setIsHovered(false);
+        }, 150);
+    };
+
+    const handleNavigate = (path) => {
+        navigate(path);
+        setIsHovered(false);
+        setIsDropdownHovered(false);
+    };
+
+    // Cleanup timeout khi component unmount
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <header className="w-full relative bg-gradient-to-b from-sky-300 to-sky-600 ">
+        <header className="w-full relative bg-gradient-to-b from-sky-300 to-sky-600">
             <div className="absolute opacity-20 top-[-2px] left-0 w-full h-full bg-[url('/src/assets/images/background.svg')] bg-cover bg-[center_top] z-0"></div>
 
             <div className="relative max-w-screen-xl mx-auto z-10">
@@ -40,7 +91,11 @@ const Header = () => {
                     </div>
 
                     {/* Right */}
-                    <div className="h-12 flex gap-5 items-center">
+                    <div
+                        className="h-12 flex gap-5 items-center relative"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
                         <div className="h-fit flex gap-5 pr-5 items-center border-r-2 border-white">
                             <Icon icon="mingcute:notification-fill" className="text-white w-7 h-7" />
                             <Icon icon="mingcute:shopping-cart-1-fill" className="text-white w-7 h-7" />
@@ -57,6 +112,55 @@ const Header = () => {
                             </div>
                             <Icon icon="mingcute:down-line" className="text-white w-5 h-5" />
                         </HeroUIButton>
+
+                        {isHovered && (
+                            <div 
+                                className="absolute top-full right-0 mt-2 w-60 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-[9999]"
+                                onMouseEnter={handleDropdownMouseEnter}
+                                onMouseLeave={handleDropdownMouseLeave}
+                                style={{ 
+                                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                                    zIndex: 9999 
+                                }}
+                            >
+                                <div
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    onClick={() => handleNavigate("/profile")}
+                                >
+                                    <Icon icon="mingcute:user-4-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Thông tin cá nhân</span>
+                                </div>
+                                <div
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    onClick={() => handleNavigate("/shipping-address")}
+                                >
+                                    <Icon icon="mingcute:map-pin-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Sổ địa chỉ nhận hàng</span>
+                                </div>
+                                <div
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    onClick={() => handleNavigate("/track-order")}
+                                >
+                                    <Icon icon="mingcute:truck-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Theo dõi đơn hàng</span>
+                                </div>
+                                <div
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    onClick={() => handleNavigate("/order-history")}
+                                >
+                                    <Icon icon="mingcute:history-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Lịch sử mua hàng</span>
+                                </div>
+                                <div className="border-t border-gray-200 my-2"></div>
+                                <div
+                                    className="flex items-center px-4 py-3 text-red-500 hover:bg-red-50 cursor-pointer transition-colors duration-200"
+                                    onClick={() => console.log("Đăng xuất")}
+                                >
+                                    <Icon icon="mingcute:exit-line" className="w-5 h-5 mr-3" />
+                                    <span className="font-medium">Đăng xuất</span>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -65,3 +169,4 @@ const Header = () => {
 };
 
 export default Header;
+
