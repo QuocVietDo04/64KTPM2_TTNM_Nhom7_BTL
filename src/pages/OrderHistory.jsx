@@ -81,7 +81,7 @@ const OrderHistory = () => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-50 gap-6 p-6">
+    <div className="flex gap-6">
       {/* Sidebar */}
       <div className="w-80">
         {/* User Info Card */}
@@ -115,7 +115,7 @@ const OrderHistory = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1">
+      <div className="flex-1 h-fit">
         <Card className="h-full">
           <CardHeader className="flex justify-between items-center pb-4">
             <h1 className="text-2xl font-bold text-gray-800">LỊCH SỬ ĐẶT HÀNG</h1>
