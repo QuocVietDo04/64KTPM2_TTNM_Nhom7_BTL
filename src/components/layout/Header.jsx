@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Button as HeroUIButton, Input } from "@heroui/react";
+import { Button, Input, Image } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
 import NavbarButton from "../shared/NavbarButton";
 import { useNavigate } from "react-router-dom";
 
@@ -69,7 +70,9 @@ const Header = () => {
                 <div className="pt-4 pb-5 flex gap-10">
                     {/* Left */}
                     <div className="h-12 flex items-center">
-                        <img src="src/assets/images/logo/header.svg" alt="logo" />
+                        <Link to="/">
+                            <Image src="src/assets/images/logo/header.svg" alt="logo" />
+                        </Link>
                     </div>
 
                     {/* Center */}
@@ -100,7 +103,7 @@ const Header = () => {
                             <Icon icon="mingcute:notification-fill" className="text-white w-7 h-7" />
                             <Icon icon="mingcute:shopping-cart-1-fill" className="text-white w-7 h-7" />
                         </div>
-                        <HeroUIButton
+                        <Button
                             type="reset"
                             className="bg-gradient-to-t from-sky-700 to-sky-500 w-48 h-full px-3 flex justify-between items-center rounded-full relative z-50"
                         >
@@ -111,7 +114,7 @@ const Header = () => {
                                 </span>
                             </div>
                             <Icon icon="mingcute:down-line" className="text-white w-5 h-5" />
-                        </HeroUIButton>
+                        </Button>
 
                         {/* Dropdown Menu - Positioned relative to button */}
                         {isHovered && (
