@@ -1,14 +1,13 @@
 import React from "react";
 import { Button as HeroUIButton, Input } from "@heroui/react";
 import { Icon } from "@iconify/react";
-import NavbarButton from "../shared/NavbarButton";
 
 const Header = () => {
     return (
         <header className="w-full relative bg-gradient-to-b from-sky-300 to-sky-600 ">
             <div className="absolute opacity-20 top-[-2px] left-0 w-full h-full bg-[url('/src/assets/images/background.svg')] bg-cover bg-[center_top] z-0"></div>
 
-            <div className="relative max-w-screen-xl mx-auto">
+            <div className="relative max-w-screen-xl mx-auto z-10">
                 {/* Top */}
                 <div className="py-4 flex gap-1.5 items-center">
                     <Icon icon="mingcute:phone-fill" className="text-white w-5 h-5" />

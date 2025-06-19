@@ -9,8 +9,8 @@ const Layout = ({ children }) => {
     <div className="flex flex-col h-screen">
       <Header />
       <Navbar />
-      <main className="w-full flex-1">
-        <div className="max-w-screen-xl mx-auto">
+      <main className="w-full flex-1 pt-10 pb-20">
+        <div className="max-w-screen-xl mx-auto space-y-14">
           {children}
         </div>
       </main>
