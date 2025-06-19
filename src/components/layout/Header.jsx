@@ -113,15 +113,13 @@ const Header = () => {
                             <Icon icon="mingcute:down-line" className="text-white w-5 h-5" />
                         </HeroUIButton>
 
+                        {/* Dropdown Menu - Positioned relative to button */}
                         {isHovered && (
                             <div 
-                                className="fixed top-auto right-auto mt-2 w-60 bg-white rounded-lg shadow-2xl border border-gray-200 py-2"
+                                className="absolute top-full right-0 mt-2 w-60 bg-white rounded-lg shadow-2xl border border-gray-200 py-2 z-[99999]"
                                 onMouseEnter={handleDropdownMouseEnter}
                                 onMouseLeave={handleDropdownMouseLeave}
                                 style={{ 
-                                    position: 'fixed',
-                                    top: '120px', // Điều chỉnh vị trí cố định
-                                    right: '20px', // Điều chỉnh vị trí cố định
                                     zIndex: 99999,
                                     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
                                     backdropFilter: 'blur(8px)',

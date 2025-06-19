@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 import { 
   Card, 
   CardBody, 
@@ -17,6 +18,7 @@ import {
 const OrderHistory = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [searchCode, setSearchCode] = useState('');
+  const navigate = useNavigate();
 
   // Dữ liệu mẫu đơn hàng
   const sampleOrders = [
@@ -67,6 +69,10 @@ const OrderHistory = () => {
     return sampleOrders.filter(order => order.status === status).length;
   };
 
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
   const menuItems = [
     { key: 'profile', label: 'Thông tin cá nhân', icon: 'mdi:account' },
     { key: 'address', label: 'Sổ địa chỉ nhận hàng', icon: 'mdi:map-marker' },
@@ -75,7 +81,7 @@ const OrderHistory = () => {
   ];
 
   return (
-    <div className="flex min-h-screen gap-6 ">
+    <div className="flex min-h-screen bg-gray-50 gap-6 p-6">
       {/* Sidebar */}
       <div className="w-80">
         {/* User Info Card */}
@@ -207,15 +213,20 @@ const OrderHistory = () => {
                 <Card className="text-center py-12">
                   <CardBody>
                     <Icon icon="mdi:cart" className="w-20 h-20 mx-auto text-gray-300 mb-4" />
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Bạn chưa có đơn hàng nào</h3>
-                    <p className="text-gray-500 mb-6">Hãy khám phá và mua sắm những sản phẩm yêu thích của bạn</p>
-                    <Button 
-                      color="primary" 
-                      size="lg"
-                      className="font-medium"
-                    >
-                      Mua sắm ngay
-                    </Button>
+                    <div className="text-center max-w-md mx-auto">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-2">Bạn chưa có đơn hàng nào</h3>
+                      <p className="text-gray-500 mb-6">Hãy khám phá và mua sắm những sản phẩm yêu thích của bạn</p>
+                    </div>
+                    <div className="flex justify-center">
+                      <Button 
+                        color="primary" 
+                        size="lg"
+                        className="font-medium px-8"
+                        onClick={handleGoHome}
+                      >
+                        Khám phá ngay
+                      </Button>
+                    </div>
                   </CardBody>
                 </Card>
               )}
