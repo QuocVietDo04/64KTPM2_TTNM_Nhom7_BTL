@@ -7,6 +7,8 @@ import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import OrderHistory from './pages/OrderHistory';
 import CheckoutPage from './pages/CheckoutPage';
+import PaymentPage from './pages/PaymentPage';
+import OrderSuccessPage from './pages/OrderSuccessPage';
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/order-success" element={<OrderSuccessPage />} />
+          {/* Route này sẽ tự động nhận state từ navigation và truyền xuống CheckoutPage */}
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<DashboardPage />} /> */}
