@@ -111,7 +111,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="w-full bg-white shadow-sm relative z-50">
+        <nav className="w-full bg-white shadow-sm relative z-20">
             <div className="relative max-w-screen-xl mx-auto flex justify-between">
                 {categories.map((category) => (
                     <div
@@ -154,8 +154,8 @@ const Navbar = () => {
                         {/* Dropdown Menu */}
                         {category.hasDropdown && hoveredCategory === category.id && (
                             <div 
-                                className="absolute top-full left-0 bg-white rounded-tl-none rounded-2xl border border-gray-200 shadow-lg p-2 min-w-60 z-[9999]"
-                                style={{ zIndex: 9999 }}
+                                className="absolute top-full left-0 bg-white rounded-tl-none rounded-2xl border border-gray-200 shadow-lg p-2 min-w-60 "
+                                style={{ zIndex: 40 }}
                             >
                                 {category.items.map((item, index) => (
                                     <button

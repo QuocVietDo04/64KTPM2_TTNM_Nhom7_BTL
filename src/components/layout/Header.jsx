@@ -1,9 +1,9 @@
-import { Button, Input, Image } from "@heroui/react";
-import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
+import { Button as HeroUIButton, Input } from "@heroui/react";
+import { Icon } from "@iconify/react";
 import NavbarButton from "../shared/NavbarButton";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -69,11 +69,9 @@ const Header = () => {
                 {/* Main */}
                 <div className="pt-4 pb-5 flex gap-10">
                     {/* Left */}
-                    <div className="h-12 flex items-center">
-                        <Link to="/">
-                            <Image src="src/assets/images/logo/header.svg" alt="logo" />
-                        </Link>
-                    </div>
+                    <Link to="/" className="h-12 flex items-center">
+                        <img src="src/assets/images/logo/header.svg" alt="logo" />
+                    </Link>
 
                     {/* Center */}
                     <div className="flex flex-col flex-1 gap-4">
@@ -103,7 +101,7 @@ const Header = () => {
                             <Icon icon="mingcute:notification-fill" className="text-white w-7 h-7" />
                             <Icon icon="mingcute:shopping-cart-1-fill" className="text-white w-7 h-7" />
                         </div>
-                        <Button
+                        <HeroUIButton
                             type="reset"
                             className="bg-gradient-to-t from-sky-700 to-sky-500 w-48 h-full px-3 flex justify-between items-center rounded-full relative z-50"
                         >
@@ -114,12 +112,12 @@ const Header = () => {
                                 </span>
                             </div>
                             <Icon icon="mingcute:down-line" className="text-white w-5 h-5" />
-                        </Button>
+                        </HeroUIButton>
 
                         {/* Dropdown Menu - Positioned relative to button */}
                         {isHovered && (
                             <div 
-                                className="absolute top-full right-0 mt-2 w-60 bg-white rounded-lg shadow-2xl border border-gray-200 py-2 z-[99999]"
+                                className="absolute top-full right-0 mt-2 w-60 bg-white rounded-lg shadow-2xl border border-gray-200 py-2 z-50"
                                 onMouseEnter={handleDropdownMouseEnter}
                                 onMouseLeave={handleDropdownMouseLeave}
                                 style={{ 
@@ -130,45 +128,40 @@ const Header = () => {
                                 }}
                             >
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200"
                                     onClick={() => handleNavigate("/profile")}
-                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:user-4-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
-                                    <span className="text-gray-800 font-medium relative z-[99999]">Thông tin cá nhân</span>
+                                    <Icon icon="mingcute:user-4-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Thông tin cá nhân</span>
                                 </div>
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200"
                                     onClick={() => handleNavigate("/shipping-address")}
-                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:map-pin-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
-                                    <span className="text-gray-800 font-medium relative z-[99999]">Sổ địa chỉ nhận hàng</span>
+                                    <Icon icon="mingcute:map-pin-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Sổ địa chỉ nhận hàng</span>
                                 </div>
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200"
                                     onClick={() => handleNavigate("/track-order")}
-                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:truck-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
-                                    <span className="text-gray-800 font-medium relative z-[99999]">Theo dõi đơn hàng</span>
+                                    <Icon icon="mingcute:truck-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Theo dõi đơn hàng</span>
                                 </div>
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200"
                                     onClick={() => handleNavigate("/order-history")}
-                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:history-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
-                                    <span className="text-gray-800 font-medium relative z-[99999]">Lịch sử mua hàng</span>
+                                    <Icon icon="mingcute:history-line" className="w-5 h-5 mr-3 text-gray-600" />
+                                    <span className="text-gray-800 font-medium">Lịch sử mua hàng</span>
                                 </div>
-                                <div className="border-t border-gray-200 my-2 relative z-[99999]"></div>
+                                <div className="border-t border-gray-200 my-2"></div>
                                 <div
-                                    className="flex items-center px-4 py-3 text-red-500 hover:bg-red-50 cursor-pointer transition-all duration-200 relative z-[99999]"
+                                    className="flex items-center px-4 py-3 text-red-500 hover:bg-red-50 cursor-pointer transition-all duration-200"
                                     onClick={() => console.log("Đăng xuất")}
-                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:exit-line" className="w-5 h-5 mr-3 relative z-[99999]" />
-                                    <span className="font-medium relative z-[99999]">Đăng xuất</span>
+                                    <Icon icon="mingcute:exit-line" className="w-5 h-5 mr-3" />
+                                    <span className="font-medium">Đăng xuất</span>
                                 </div>
                             </div>
                         )}
@@ -180,4 +173,5 @@ const Header = () => {
 };
 
 export default Header;
+
 
