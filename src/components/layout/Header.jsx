@@ -1,6 +1,7 @@
 import React from "react";
-import { Button as HeroUIButton, Input } from "@heroui/react";
+import { Button as HeroUIButton, Input, Image } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -18,7 +19,9 @@ const Header = () => {
                 <div className="pt-4 pb-5 flex gap-10">
                     {/* Left */}
                     <div className="h-12 flex items-center">
-                        <img src="src/assets/images/logo/header.svg" alt="logo" />
+                        <Link to="/">
+                            <Image src="src/assets/images/logo/header.svg" alt="logo" />
+                        </Link>
                     </div>
 
                     {/* Center */}

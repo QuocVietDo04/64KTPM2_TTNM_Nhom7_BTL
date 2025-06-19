@@ -19,7 +19,7 @@ const HomePage = () => {
     ];
 
     return (
-        <>
+        <div className="space-y-14">
             {/* Top */}
             <div className="space-y-6">
                 {/* Banner */}
@@ -79,7 +79,7 @@ const HomePage = () => {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
