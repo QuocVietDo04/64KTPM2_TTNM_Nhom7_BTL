@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Main from '../components/Main';
 
 const HomePage = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <Main />
+  );
+};
 
-export default HomePage
+export default HomePage;
