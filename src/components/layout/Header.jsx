@@ -55,7 +55,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="w-full relative bg-gradient-to-b from-sky-300 to-sky-600">
+        <header className="w-full relative bg-gradient-to-b from-sky-300 to-sky-600 z-40">
             <div className="absolute opacity-20 top-[-2px] left-0 w-full h-full bg-[url('/src/assets/images/background.svg')] bg-cover bg-[center_top] z-0"></div>
 
             <div className="relative max-w-screen-xl mx-auto z-10">
@@ -92,7 +92,7 @@ const Header = () => {
 
                     {/* Right */}
                     <div
-                        className="h-12 flex gap-5 items-center relative"
+                        className="h-12 flex gap-5 items-center relative z-50"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                     >
@@ -102,7 +102,7 @@ const Header = () => {
                         </div>
                         <HeroUIButton
                             type="reset"
-                            className="bg-gradient-to-t from-sky-700 to-sky-500 w-48 h-full px-3 flex justify-between items-center rounded-full"
+                            className="bg-gradient-to-t from-sky-700 to-sky-500 w-48 h-full px-3 flex justify-between items-center rounded-full relative z-50"
                         >
                             <div className="flex flex-1 min-w-0 gap-1 items-center">
                                 <Icon icon="mingcute:user-4-fill" className="text-white w-9 h-9" />
@@ -115,49 +115,59 @@ const Header = () => {
 
                         {isHovered && (
                             <div 
-                                className="absolute top-full right-0 mt-2 w-60 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-[9999]"
+                                className="fixed top-auto right-auto mt-2 w-60 bg-white rounded-lg shadow-2xl border border-gray-200 py-2"
                                 onMouseEnter={handleDropdownMouseEnter}
                                 onMouseLeave={handleDropdownMouseLeave}
                                 style={{ 
-                                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                                    zIndex: 9999 
+                                    position: 'fixed',
+                                    top: '120px', // Điều chỉnh vị trí cố định
+                                    right: '20px', // Điều chỉnh vị trí cố định
+                                    zIndex: 99999,
+                                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+                                    backdropFilter: 'blur(8px)',
+                                    WebkitBackdropFilter: 'blur(8px)'
                                 }}
                             >
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
                                     onClick={() => handleNavigate("/profile")}
+                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:user-4-line" className="w-5 h-5 mr-3 text-gray-600" />
-                                    <span className="text-gray-800 font-medium">Thông tin cá nhân</span>
+                                    <Icon icon="mingcute:user-4-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
+                                    <span className="text-gray-800 font-medium relative z-[99999]">Thông tin cá nhân</span>
                                 </div>
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
                                     onClick={() => handleNavigate("/shipping-address")}
+                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:map-pin-line" className="w-5 h-5 mr-3 text-gray-600" />
-                                    <span className="text-gray-800 font-medium">Sổ địa chỉ nhận hàng</span>
+                                    <Icon icon="mingcute:map-pin-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
+                                    <span className="text-gray-800 font-medium relative z-[99999]">Sổ địa chỉ nhận hàng</span>
                                 </div>
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
                                     onClick={() => handleNavigate("/track-order")}
+                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:truck-line" className="w-5 h-5 mr-3 text-gray-600" />
-                                    <span className="text-gray-800 font-medium">Theo dõi đơn hàng</span>
+                                    <Icon icon="mingcute:truck-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
+                                    <span className="text-gray-800 font-medium relative z-[99999]">Theo dõi đơn hàng</span>
                                 </div>
                                 <div
-                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200"
+                                    className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition-all duration-200 relative z-[99999]"
                                     onClick={() => handleNavigate("/order-history")}
+                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:history-line" className="w-5 h-5 mr-3 text-gray-600" />
-                                    <span className="text-gray-800 font-medium">Lịch sử mua hàng</span>
+                                    <Icon icon="mingcute:history-line" className="w-5 h-5 mr-3 text-gray-600 relative z-[99999]" />
+                                    <span className="text-gray-800 font-medium relative z-[99999]">Lịch sử mua hàng</span>
                                 </div>
-                                <div className="border-t border-gray-200 my-2"></div>
+                                <div className="border-t border-gray-200 my-2 relative z-[99999]"></div>
                                 <div
-                                    className="flex items-center px-4 py-3 text-red-500 hover:bg-red-50 cursor-pointer transition-colors duration-200"
+                                    className="flex items-center px-4 py-3 text-red-500 hover:bg-red-50 cursor-pointer transition-all duration-200 relative z-[99999]"
                                     onClick={() => console.log("Đăng xuất")}
+                                    style={{ position: 'relative', zIndex: 99999 }}
                                 >
-                                    <Icon icon="mingcute:exit-line" className="w-5 h-5 mr-3" />
-                                    <span className="font-medium">Đăng xuất</span>
+                                    <Icon icon="mingcute:exit-line" className="w-5 h-5 mr-3 relative z-[99999]" />
+                                    <span className="font-medium relative z-[99999]">Đăng xuất</span>
                                 </div>
                             </div>
                         )}

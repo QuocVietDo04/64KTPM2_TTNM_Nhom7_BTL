@@ -75,7 +75,7 @@ const OrderHistory = () => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-50 gap-6 p-6">
+    <div className="flex min-h-screen gap-6 ">
       {/* Sidebar */}
       <div className="w-80">
         {/* User Info Card */}
