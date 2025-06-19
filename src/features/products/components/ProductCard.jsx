@@ -1,41 +1,30 @@
 import React from "react";
-import {
-    Button as HeroUIButton,
-    Card, // Import Card
-    CardBody, // Import CardBody
-    CardFooter, // Import CardFooter
-    Image, // Import Image nếu bạn muốn sử dụng component Image của HeroUI
-} from "@heroui/react";
+import { Button as HeroUIButton, Card, CardBody, CardFooter, Image } from "@heroui/react";
 
 const ProductCard = ({ product }) => {
-    const { image, discount, product_name, current_price, original_price, unit } = product;
-    const repeatedProductName = `${product_name} ${product_name} ${product_name}`;
+    const { image, discount, product_name, current_price, original_price, unit, quantity } = product;
 
     return (
-        // Sử dụng HeroUI Card làm container chính
-        // Các props như shadow, radius có thể tùy chỉnh
-        <Card isPressable shadow="sm" radius="lg" className="w-60 h-[456px] mx-auto group bg-white overflow-hidden">
+        <Card isPressable shadow="sm" radius="lg" className="w-60 h-[460px] group bg-white overflow-hidden">
             {discount !== null && (
-                <div className="absolute top-0 left-0 bg-gradient-to-br from-red-600 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-br-lg z-10">
+                <div className="absolute top-0 left-0 bg-gradient-to-br from-red-600 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-br-lg z-20">
                     -{discount}
                 </div>
             )}
-
-            {/* Product Image - Có thể dùng HeroUI Image component */}
-            {/* Nếu bạn dùng HeroUI Image, hãy đảm bảo rằng Image component được tối ưu hóa cho thẻ (ví dụ: responsive) */}
-            <div className="w-full flex items-center justify-center p-2">
+            <div className="w-[180px] h-[180px] flex items-center justify-center p-2 mx-auto">
                 <Image
                     isZoomed
-                    src={image}
+                    src={image.startsWith("products/") ? `/${image}` : image}
                     alt={product_name}
                     width={180}
+                    height={180}
                     className="object-contain transition-transform duration-300 group-hover:scale-105"
+                    removeWrapper
                 />
             </div>
 
-            {/* Product Info - Đặt trong CardBody */}
-            <CardBody className="w-full p-4 pt-6 flex flex-col items-start gap-2">
-                <h3 className="text-base font-medium w-full min-h-[40px] line-clamp-3">{repeatedProductName}</h3>
+            <CardBody className="w-full p-4 pt-6 flex flex-col items-start gap-3">
+                <h3 className="text-base font-medium w-full min-h-[40px] line-clamp-3">{product_name}</h3>
                 <div className="space-y-1">
                     <div className="flex items-end gap-2">
                         <span className="text-2xl font-semibold text-sky-600">
@@ -48,17 +37,17 @@ const ProductCard = ({ product }) => {
                             {original_price.toLocaleString("vi-VN")}₫
                         </span>
                     )}
+                    <div className="w-fit rounded-lg bg-gray-200 text-gray-600 px-2 py-0.5">
+                        <span className="text-[13px] font-medium">{quantity}</span>
+                    </div>
                 </div>
             </CardBody>
 
-            {/* Select Product Button - Đặt trong CardFooter */}
             <CardFooter className="px-4 pb-4 pt-0">
-                {" "}
-                {/* Điều chỉnh padding cho footer */}
                 <HeroUIButton
                     type="button"
                     fullWidth
-                    className="bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200"
+                    className="bg-gradient-to-b from-sky-600 to-sky-400 text-base text-white font-medium px-4 py-3 rounded-full hover:opacity-80 transition-colors duration-200"
                 >
                     Chọn sản phẩm
                 </HeroUIButton>
