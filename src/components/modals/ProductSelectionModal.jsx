@@ -21,17 +21,19 @@ const ProductSelectionModal = ({ isOpen, onOpenChange, product }) => {
     }
 
     // State để quản lý biến thể (đơn vị) đang được chọn
-    const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+    const [selectedVariantUnit, setSelectedVariantUnit] = useState('');
     // State để quản lý số lượng
     const [quantity, setQuantity] = useState(1);
 
     // Cập nhật biến thể mặc định khi product thay đổi
     useEffect(() => {
-        setSelectedVariantIndex(0); // Luôn chọn biến thể đầu tiên khi modal mở cho sản phẩm mới
+        if (product?.variants?.length > 0) {
+            setSelectedVariantUnit(product.variants[0].unit); // Luôn chọn biến thể đầu tiên khi modal mở cho sản phẩm mới
+        }
         setQuantity(1); // Đặt lại số lượng về 1
     }, [product]);
 
-    const selectedVariant = product.variants[selectedVariantIndex];
+    const selectedVariant = product.variants.find(v => v.unit === selectedVariantUnit) || product.variants[0];
 
     const handleQuantityChange = (type) => {
         if (type === "increase") {
@@ -81,9 +83,9 @@ const ProductSelectionModal = ({ isOpen, onOpenChange, product }) => {
                                         className="object-contain rounded-lg mx-auto"
                                         isZoomed
                                     />
-                                    {product.variants[selectedVariantIndex].discount !== null && (
+                                    {selectedVariant.discount !== null && (
                                         <div className="absolute z-10 top-0 left-0 bg-gradient-to-br from-red-600 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-br-lg rounded-tl-lg">
-                                            -{product.variants[selectedVariantIndex].discount}
+                                            -{selectedVariant.discount}
                                         </div>
                                     )}
                                 </div>
@@ -124,21 +126,21 @@ const ProductSelectionModal = ({ isOpen, onOpenChange, product }) => {
                                                     <span className="font-semibold text-gray-700 w-[80px]">Đơn vị:</span>
                                                     <RadioGroup
                                                         orientation="horizontal"
-                                                        value={selectedVariantIndex.toString()}
-                                                        onValueChange={(val) => setSelectedVariantIndex(parseInt(val, 10))}
+                                                        value={selectedVariantUnit}
+                                                        onValueChange={setSelectedVariantUnit}
                                                         className="flex flex-wrap"
                                                     >
                                                         {product.variants.map((variant, index) => (
                                                             <Radio
                                                                 key={index}
-                                                                value={index.toString()}
+                                                                value={variant.unit}
                                                                 className="px-4 py-1 pr-6 mr-2 border rounded-full cursor-pointer transition-all duration-200"
                                                                 classNames={{
                                                                     wrapper: "hidden", // Ẩn radio button tròn mặc định
                                                                     label: "text-base font-medium",
                                                                     control: "hidden",
                                                                     base:
-                                                                        selectedVariantIndex.toString() === index.toString()
+                                                                        selectedVariantUnit === variant.unit
                                                                             ? "bg-sky-100 border-sky-600" // Style khi được chọn
                                                                             : "border-gray-300 hover:border-sky-600", // Style khi KHÔNG được chọn và hover
                                                                 }}
