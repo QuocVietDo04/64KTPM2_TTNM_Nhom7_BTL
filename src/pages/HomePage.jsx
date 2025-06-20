@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { topProductsData } from "../top-product";
 import ProductCard from "../components/shared/ProductCard";
 import Slider from "../components/shared/Slider";

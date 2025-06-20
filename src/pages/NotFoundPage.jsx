@@ -1,26 +1,38 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Icon } from '@iconify/react';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
 
+  const handleBackToHome = () => {
+    navigate('/'); 
+  };
+
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 px-4">
-      <Icon icon="mdi:alert-circle-outline" className="text-red-500 w-20 h-20 mb-4" />
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">Không tìm thấy kết quả</h1>
-      <p className="text-gray-600 mb-6 text-center max-w-md">
-        Từ khóa bạn nhập không phù hợp với bất kỳ sản phẩm nào trong hệ thống.
-      </p>
-      <button
-        onClick={() => navigate('/')}
-        className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-500 transition"
-      >
-        Quay về Trang chủ
-      </button>
+    <div className="bg-[#f5f7fa] w-full py-2">
+      <div className="max-w-8xl mx-auto bg-gray-200 p-6 rounded-xl min-h-[500px]">
+        <h2 className="text-base font-semibold mb-6">Danh sách sản phẩm</h2>
+
+        <div className="flex flex-col items-center justify-center text-center py-20 space-y-3">
+          <img
+            src="/src/assets/images/notfound.svg"
+            alt="Không tìm thấy"
+            className="w-90 h-90"
+          />
+          <p className="text-base font-medium text-gray-800">
+            Ôi! Không tìm thấy sản phẩm nào phù hợp
+          </p>
+          <p className="text-base text-gray-500">Hãy quay lại trang chủ</p>
+          <button
+            onClick={handleBackToHome}
+            className="mt-2 px-5 py-1.5 text-base rounded-full bg-blue-600 text-white hover:bg-blue-500 transition"
+          >
+            Quay lại trang chủ
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default NotFoundPage;
-
