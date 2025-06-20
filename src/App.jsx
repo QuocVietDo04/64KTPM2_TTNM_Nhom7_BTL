@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 
 // Import các trang (pages) ở đây
-import HomePage from './pages/HomePage';
+import HomePage from './pages/SearchResultPage';
+import NotFound from './pages/NotFoundPage'; // ✅ Thêm dòng này
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Routes> {/* Routes định nghĩa các tuyến đường khác nhau */}
           {/* Định nghĩa các Route cho từng trang */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/not-found" element={<NotFound />} /> {/* ✅ Thêm dòng này */}
+
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<DashboardPage />} /> */}

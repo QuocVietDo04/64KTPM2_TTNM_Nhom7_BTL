@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button as HeroUIButton, Input } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import NavbarButton from "../shared/NavbarButton";
 
 const Header = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearchKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            const keyword = searchTerm.trim().toLowerCase();
+            if (keyword === 'omega 3') {
+                navigate('/');
+            } else {
+                navigate('/not-found');
+            }
+        }
+    };
+
     return (
         <header className="w-full relative bg-gradient-to-b from-sky-300 to-sky-600">
             <div className="absolute opacity-20 top-[-2px] left-0 w-full h-full bg-[url('/src/assets/images/background.svg')] bg-cover bg-[center_top] z-0"></div>
@@ -27,6 +42,9 @@ const Header = () => {
                             placeholder="Tìm kiếm"
                             size="lg"
                             radius="sm"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={handleSearchKeyDown}
                             startContent={<Icon icon="mingcute:search-3-line" className="text-sky-600 w-7 h-7" />}
                         />
                         <div className="flex gap-4 px-4 py-1 items-center text-[15px] text-white">
@@ -35,7 +53,7 @@ const Header = () => {
                             <span>Chống lão hóa</span>
                             <span>Sữa rửa mặt</span>
                             <span>Dung dịch vệ sinh</span>
-                            <span>Kem chống năng</span>
+                            <span>Kem chống nắng</span>
                         </div>
                     </div>
 

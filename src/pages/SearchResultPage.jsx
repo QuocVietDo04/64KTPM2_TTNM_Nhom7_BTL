@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import productsData from '../data.js';
 
-const HomePage = () => {
+const SearchResultPage = () => {
   const [selectedPrice, setSelectedPrice] = useState('');
   const [sortOption, setSortOption] = useState('popular');
   const [selectedTargets, setSelectedTargets] = useState(['Tất cả']);
@@ -59,7 +59,7 @@ const HomePage = () => {
   );
 //bg-[#f5f7fa]
   return (
-    <div className="w-full bg-gray-100 px-4 py-6">
+    <div className="w-full bg-gray-100">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-6">
 
         {/* Bộ lọc nâng cao */}
@@ -249,4 +249,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default SearchResultPage;
