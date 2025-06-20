@@ -9,6 +9,7 @@ const Header = () => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [searchHistory, setSearchHistory] = useState([]);
     const [showResults, setShowResults] = useState(false);
+    const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const timeoutRef = useRef(null);
@@ -26,15 +27,21 @@ const Header = () => {
             setSearchTerm('');
             setShowResults(false);
             setShowSuggestions(false);
+            setHasSubmittedSearch(false);
             document.activeElement.blur();
         }
     }, [location.pathname]);
 
     useEffect(() => {
         const term = searchTerm.trim().toLowerCase();
-        setShowResults(term === 'omega 3');
-        setShowSuggestions(term !== 'omega 3');
-    }, [searchTerm]);
+        if (!hasSubmittedSearch) {
+            setShowResults(term === 'omega 3');
+            setShowSuggestions(term !== 'omega 3');
+        } else {
+            setShowResults(false);
+            setShowSuggestions(false);
+        }
+    }, [searchTerm, hasSubmittedSearch]);
 
     const saveSearchHistory = (keyword) => {
         if (!keyword) return;
@@ -48,8 +55,9 @@ const Header = () => {
         if (e.key === 'Enter') {
             const keyword = searchTerm.trim().toLowerCase();
             saveSearchHistory(keyword);
+            setHasSubmittedSearch(true);
             setShowSuggestions(false);
-            setShowResults(false); // Đảm bảo ẩn kết quả
+            setShowResults(false);
 
             if (keyword === 'omega 3') {
                 navigate('/search-result');
@@ -74,8 +82,9 @@ const Header = () => {
     };
 
     const selectFromHistory = (keyword) => {
-        // setSearchTerm(keyword);
+        setSearchTerm(keyword);
         saveSearchHistory(keyword);
+        setHasSubmittedSearch(true);
         setShowSuggestions(false);
         setShowResults(false);
         navigate(keyword === 'omega 3' ? '/search-result' : '/not-found');
@@ -137,7 +146,10 @@ const Header = () => {
                             size="lg"
                             radius="sm"
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value);
+                                setHasSubmittedSearch(false);
+                            }}
                             onFocus={() => {
                                 const term = searchTerm.trim().toLowerCase();
                                 setShowSuggestions(term !== 'omega 3');
@@ -147,7 +159,7 @@ const Header = () => {
                             startContent={<Icon icon="mingcute:search-3-line" className="text-sky-600 w-7 h-7" />}
                         />
 
-                        {showResults ? (
+                        {showResults && (
                             <div className="absolute top-12 mt-2 w-full bg-white border rounded-lg shadow-lg z-50 p-4">
                                 <div className="flex justify-between items-center">
                                     <h3 className="font-semibold text-gray-800">Kết quả tìm kiếm</h3>
@@ -165,7 +177,7 @@ const Header = () => {
                                 <div className="pt-2">
                                     <h4 className="text-sm font-bold text-gray-600 mb-2">Tra cứu hàng đầu</h4>
                                     <div className="flex flex-wrap gap-3">
-                                        {["Name of Item", "Name of Item","Name of Item","Name of Item"].map((item, index) => (
+                                        {["Name of Item", "Name of Item", "Name of Item", "Name of Item"].map((item, index) => (
                                             <span key={index} className="px-4 py-1 border border-sky-500 text-sky-600 rounded-full text-sm cursor-pointer hover:bg-sky-50 transition">
                                                 {item}
                                             </span>
@@ -173,7 +185,9 @@ const Header = () => {
                                     </div>
                                 </div>
                             </div>
-                        ) : showSuggestions && (
+                        )}
+
+                        {showSuggestions && (
                             <div className="absolute top-12 mt-2 w-full bg-white border rounded-lg shadow-lg z-50">
                                 <div className="p-4 border-b">
                                     <div className="flex justify-between mb-2">
