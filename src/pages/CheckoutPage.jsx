@@ -7,8 +7,34 @@ import { useNavigate } from "react-router-dom";
 const CheckoutPage = () => {
     const { state } = useLocation();
     const navigate = useNavigate();
-    const { products, product, selectedVariant, quantity } = state || {};
-    const items = products || (product ? [{ product, selectedVariant, quantity }] : []);
+    // Xử lý dữ liệu items để hỗ trợ cả single item và multiple items
+    const normalizeItems = (data) => {
+        if (!data) return [];
+        
+        // Nếu có products (multiple items)
+        if (data.products && Array.isArray(data.products)) {
+            return data.products;
+        }
+        
+        // Nếu có items (multiple items)
+        if (data.items && Array.isArray(data.items)) {
+            return data.items;
+        }
+        
+        // Nếu có product (single item)
+        if (data.product && data.selectedVariant && data.quantity) {
+            return [{
+                product: data.product,
+                selectedVariant: data.selectedVariant,
+                quantity: data.quantity
+            }];
+        }
+        
+        // Fallback: trả về mảng rỗng
+        return [];
+    };
+
+    const items = normalizeItems(state);
 
     // State để lưu các giá trị tính toán
     const [totalAmount, setTotalAmount] = useState(0); // Tổng tiền
@@ -20,14 +46,19 @@ const CheckoutPage = () => {
         if (items && items.length > 0) {
             // Tính tổng tiền
             const total = items.reduce((sum, item) => {
-                return sum + item.selectedVariant.current_price * item.quantity;
+                // Xử lý cả trường hợp item có cấu trúc khác nhau
+                const price = item.selectedVariant?.current_price || item.current_price || 0;
+                const qty = item.quantity || 1;
+                return sum + (price * qty);
             }, 0);
 
             // Tính giảm giá trực tiếp
             const discount = items.reduce((sum, item) => {
-                const itemDiscount = item.selectedVariant.original_price
-                    ? (item.selectedVariant.original_price - item.selectedVariant.current_price) * item.quantity
-                    : 0;
+                const currentPrice = item.selectedVariant?.current_price || item.current_price || 0;
+                const originalPrice = item.selectedVariant?.original_price || item.original_price || null;
+                const qty = item.quantity || 1;
+                
+                const itemDiscount = originalPrice ? (originalPrice - currentPrice) * qty : 0;
                 return sum + itemDiscount;
             }, 0);
 
@@ -35,6 +66,11 @@ const CheckoutPage = () => {
             setTotalAmount(total);
             setDiscountAmount(discount);
             setFinalAmount(total); // Thành tiền = tổng tiền (sau khi đã trừ giảm giá)
+        } else {
+            // Reset về 0 nếu không có items
+            setTotalAmount(0);
+            setDiscountAmount(0);
+            setFinalAmount(0);
         }
     }, [items]); // Dependency array chứa items
 
@@ -73,7 +109,7 @@ const CheckoutPage = () => {
             try {
                 // Giả lập API call thanh toán
                 await new Promise((resolve) => setTimeout(resolve, 2000));
-                navigate("/payment", { state: { product, finalAmount } });
+                navigate("/payment", { state: { finalAmount } });
             } catch (error) {
                 console.error("Lỗi ở phương thức 2:", error);
             } finally {
@@ -297,45 +333,57 @@ const CheckoutPage = () => {
                         <Card shadow="sm" radius="lg" className="w-full bg-white">
                             <CardHeader className="flex items-center justify-between p-6 border-b">
                                 <h2 className="text-xl font-semibold">Danh sách sản phẩm</h2>
-                                <p className="text-sm text-gray-500">Số lượng: {quantity || 0}</p>
+                                <p className="text-sm text-gray-500">
+                                    Số lượng: {items.reduce((total, item) => total + (item.quantity || 1), 0)}
+                                </p>
                             </CardHeader>
                             <CardBody>
                                 <div className="space-y-4">
-                                    {items.map(({ product, selectedVariant, quantity }, index) => (
-                                        <div
-                                            key={`${product.id}-${selectedVariant?.id || ""}`}
-                                            className={`flex justify-between p-4 ${
-                                                index < items.length - 1 ? "border-b border-gray-200 pb-6 mb-2" : ""
-                                            }`}
-                                        >
-                                            <div className="flex items-center gap-4">
-                                                <img
-                                                    src={product.image}
-                                                    alt={product.product_name}
-                                                    className="w-20 h-20 object-cover rounded"
-                                                />
-                                                <h3 className="font-medium text-[15px] max-w-[400px] line-clamp-2">
-                                                    {product.product_name}
-                                                </h3>
-                                            </div>
-                                            <div className="text-right flex items-center gap-8">
-                                                <div className="flex flex-col gap-[2px]">
-                                                    <span className="text-xl font-semibold text-sky-600 leading-none">
-                                                        {selectedVariant.current_price.toLocaleString("vi-VN")}₫
-                                                    </span>
-                                                    {selectedVariant.original_price !== null && (
-                                                        <span className="text-sm text-gray-500 line-through">
-                                                            {selectedVariant.original_price.toLocaleString("vi-VN")}₫
-                                                        </span>
-                                                    )}
+                                    {items.map((item, index) => {
+                                        // Xử lý cả trường hợp item có cấu trúc khác nhau
+                                        const product = item.product || item;
+                                        const selectedVariant = item.selectedVariant || item;
+                                        const quantity = item.quantity || 1;
+                                        
+                                        return (
+                                            <div
+                                                key={`${product.id || index}-${selectedVariant?.id || selectedVariant?.unit || index}`}
+                                                className={`flex justify-between p-4 ${
+                                                    index < items.length - 1 ? "border-b border-gray-200 pb-6 mb-2" : ""
+                                                }`}
+                                            >
+                                                <div className="flex items-center gap-4">
+                                                    <img
+                                                        src={product.image || "/images/placeholder.jpg"}
+                                                        alt={product.product_name || product.productName || "Sản phẩm"}
+                                                        className="w-20 h-20 object-cover rounded"
+                                                        onError={(e) => {
+                                                            e.target.src = "/images/placeholder.jpg";
+                                                        }}
+                                                    />
+                                                    <h3 className="font-medium text-[15px] max-w-[400px] line-clamp-2">
+                                                        {product.product_name || product.productName || "Tên sản phẩm"}
+                                                    </h3>
                                                 </div>
+                                                <div className="text-right flex items-center gap-8">
+                                                    <div className="flex flex-col gap-[2px]">
+                                                        <span className="text-xl font-semibold text-sky-600 leading-none">
+                                                            {(selectedVariant.current_price || 0).toLocaleString("vi-VN")}₫
+                                                        </span>
+                                                        {selectedVariant.original_price && (
+                                                            <span className="text-sm text-gray-500 line-through">
+                                                                {selectedVariant.original_price.toLocaleString("vi-VN")}₫
+                                                            </span>
+                                                        )}
+                                                    </div>
 
-                                                <span className="text-sky-600 font-semibold pb-[2px]">
-                                                    x{quantity} {selectedVariant.unit}
-                                                </span>
+                                                    <span className="text-sky-600 font-semibold pb-[2px]">
+                                                        x{quantity} {selectedVariant.unit || ""}
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </CardBody>
                         </Card>

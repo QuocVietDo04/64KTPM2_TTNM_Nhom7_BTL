@@ -42,7 +42,7 @@ const CartPage = () => {
             id: "cart_item_2",
             productId: "top_prod_001",
             productName:
-                "Hỗn dịch uống men vi sinh Enterogermina Gut Defense Sanofi tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
+                "Hỗn dịch nước chua toé doe tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
             image: "/top-product/2.jpg",
             variants: [
                 {
@@ -72,7 +72,7 @@ const CartPage = () => {
             id: "cart_item_3",
             productId: "top_prod_001",
             productName:
-                "Hỗn dịch uống men vi sinh Enterogermina Gut Defense Sanofi tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
+                "Hỗn dịch nước hương liệu siêu ngọt tăng cường tiêu hóa, hỗ trợ bảo vệ đường ruột",
             image: "/top-product/3.webp",
             variants: [
                 {
@@ -356,12 +356,12 @@ const CartPage = () => {
 
                 {/* Summary */}
                 {cartItems.length > 0 && (
-                    <div className="flex justify-between items-center pt-6 border-t">
+                    <div className="flex justify-between items-center px-4 py-6 border-t rounded-b-xl shadow-lg bg-white">
                         <div className="text-gray-600">Có ({selectedItems.length}) sản phẩm được chọn</div>
                         <div className="flex items-center gap-6">
                             <div className="text-right">
                                 <div className="text-2xl font-bold text-red-500">
-                                    Thành tiền: {totalAmount.toLocaleString("vi-VN")}đ
+                                    <span className="text-black font-semibold text-[20px]">Thành tiền:</span> {totalAmount.toLocaleString("vi-VN")}đ
                                 </div>
                                 {totalSavings > 0 && (
                                     <div className="text-sm text-sky-600">
