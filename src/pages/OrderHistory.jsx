@@ -78,10 +78,10 @@ const OrderHistory = () => {
     };
 
     const menuItems = [
-        { key: 'profile', label: 'Thông tin cá nhân', icon: 'mdi:account' },
-        { key: 'address', label: 'Sổ địa chỉ nhận hàng', icon: 'mdi:map-marker' },
-        { key: 'tracking', label: 'Theo dõi đơn hàng', icon: 'mdi:truck' },
-        { key: 'history', label: 'Lịch sử mua hàng', icon: 'mdi:file-document', active: true }
+        { key: 'profile', label: 'Thông tin cá nhân', icon: 'mingcute:user-4-line', path: '/profile' },
+        { key: 'address', label: 'Sổ địa chỉ nhận hàng', icon: 'mingcute:map-pin-line', path: '/shipping-address' },
+        { key: 'tracking', label: 'Theo dõi đơn hàng', icon: 'mingcute:truck-line', path: '/order-tracking' },
+        { key: 'history', label: 'Lịch sử mua hàng', icon: 'mingcute:history-line', path: '/order-history', active: true }
     ];
 
     return (
@@ -110,6 +110,7 @@ const OrderHistory = () => {
                                 color={item.active ? "primary" : "default"}
                                 className={`w-full justify-start mb-1 ${item.active ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
                                 startContent={<Icon icon={item.icon} className="w-4 h-4" />}
+                                onClick={() => navigate(item.path)}
                             >
                                 {item.label}
                             </Button>
