@@ -3,8 +3,10 @@ import React from "react";
 import { Button, Card, CardBody, CardFooter, Image, useDisclosure } from "@heroui/react";
 // Import modal mới tạo
 import ProductSelectionModal from "../modals/ProductSelectionModal"; // Điều chỉnh đường dẫn
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+    const navigate = useNavigate();
     const productImageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
 
     // Sử dụng useDisclosure để quản lý trạng thái modal
@@ -28,9 +30,9 @@ const ProductCard = ({ product }) => {
     } = selectedVariant;
 
     return (
-        <Card isPressable shadow="sm" radius="lg" className="w-60 h-[460px] group bg-white overflow-hidden">
+        <Card isPressable onPress={() => navigate(`/product/${product.id}`)} shadow="sm" radius="lg" className="w-60 h-[460px] group bg-white overflow-hidden">
             {discount !== null && (
-                <div className="absolute top-0 left-0 bg-gradient-to-br from-red-600 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-br-lg z-20">
+                <div className="absolute top-0 left-0 bg-gradient-to-br from-red-600 to-red-400 text-white text-sm font-semibold px-2 py-1 rounded-br-2xl z-20">
                     -{discount}
                 </div>
             )}

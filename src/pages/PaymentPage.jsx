@@ -62,7 +62,7 @@ const PaymentPage = () => {
                             <span>để hoàn tất quá trình đặt hàng</span>
                         </p>
                         <img
-                            src={`https://img.vietqr.io/image/970407-19073332651011-compact2.png?amount=${testFinalAmount}&addInfo=Hoa%20Don%20Mua%20Thuoc&accountName=HIEU%20THUOC%20VIET%20HUNG`}
+                            src={`https://img.vietqr.io/image/970407-19073332651011-compact2.png?amount=${finalAmount}&addInfo=Hoa%20Don%20Mua%20Thuoc&accountName=HIEU%20THUOC%20VIET%20HUNG`}
                             alt=""
                             className="mt-4"
                         />

@@ -6,11 +6,11 @@ const Footer = () => {
             <div className="max-w-screen-xl mx-auto flex flex-col">
                 {/* Top */}
                 <div className="flex justify-between items-center pb-10">
-                    <img src="src/assets/images/logo/footer.svg" alt="logo" />
+                    <img src="/src/assets/images/logo/footer.svg" alt="logo" />
                     <div className="flex gap-6">
-                        <img src="src/assets/images/social/facebook.svg" alt="facebook" />
-                        <img src="src/assets/images/social/youtube.svg" alt="youtube" />
-                        <img src="src/assets/images/social/zalo.svg" alt="zalo" />
+                        <img src="/src/assets/images/social/facebook.svg" alt="facebook" />
+                        <img src="/src/assets/images/social/youtube.svg" alt="youtube" />
+                        <img src="/src/assets/images/social/zalo.svg" alt="zalo" />
                     </div>
                 </div>
 
@@ -134,10 +134,10 @@ const Footer = () => {
                         <div className="flex flex-col gap-2">
                             <p className="font-bold text-base">TẢI ỨNG DỤNG TẠI ĐÂY</p>
                             <div className="flex gap-2 items-center">
-                                <img src="src/assets/images/install/qr-install.svg" alt="qr" />
+                                <img src="/src/assets/images/install/qr-install.svg" alt="qr" />
                                 <div className="flex flex-col gap-2">
-                                    <img src="src/assets/images/install/google-play.svg" alt="google-play" />
-                                    <img src="src/assets/images/install/app-store.svg" alt="app-store" />
+                                    <img src="/src/assets/images/install/google-play.svg" alt="google-play" />
+                                    <img src="/src/assets/images/install/app-store.svg" alt="app-store" />
                                 </div>
                             </div>
                         </div>
@@ -145,25 +145,25 @@ const Footer = () => {
                             <p className="font-bold text-base">HỖ TRỢ THANH TOÁN</p>
                             <div className="flex flex-col gap-2.5">
                                 <div className="flex gap-2.5">
-                                    <img src="src/assets/images/payment/cod.svg" alt="cod" />
-                                    <img src="src/assets/images/payment/vnpay.svg" alt="vnpay" />
-                                    <img src="src/assets/images/payment/zalopay.svg" alt="zalopay" />
-                                    <img src="src/assets/images/payment/momo.svg" alt="momo" />
+                                    <img src="/src/assets/images/payment/cod.svg" alt="cod" />
+                                    <img src="/src/assets/images/payment/vnpay.svg" alt="vnpay" />
+                                    <img src="/src/assets/images/payment/zalopay.svg" alt="zalopay" />
+                                    <img src="/src/assets/images/payment/momo.svg" alt="momo" />
                                 </div>
                                 <div className="flex gap-2.5">
-                                    <img src="src/assets/images/payment/visa.svg" alt="visa" />
-                                    <img src="src/assets/images/payment/mastercard.svg" alt="mastercard" />
-                                    <img src="src/assets/images/payment/jcb.svg" alt="jcb" />
-                                    <img src="src/assets/images/payment/napas.svg" alt="napas" />
+                                    <img src="/src/assets/images/payment/visa.svg" alt="visa" />
+                                    <img src="/src/assets/images/payment/mastercard.svg" alt="mastercard" />
+                                    <img src="/src/assets/images/payment/jcb.svg" alt="jcb" />
+                                    <img src="/src/assets/images/payment/napas.svg" alt="napas" />
                                 </div>
                             </div>
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className="font-bold text-base">CHỨNG NHẬN BỞI</p>
                             <div className="flex gap-2.5">
-                                <img src="src/assets/images/certification/1.svg" alt="certification" />
-                                <img src="src/assets/images/certification/2.svg" alt="certification" />
-                                <img src="src/assets/images/certification/3.svg" alt="certification" />
+                                <img src="/src/assets/images/certification/1.svg" alt="certification" />
+                                <img src="/src/assets/images/certification/2.svg" alt="certification" />
+                                <img src="/src/assets/images/certification/3.svg" alt="certification" />
                             </div>
                         </div>
                     </div>

@@ -7,3 +7,13 @@
   @apply text-gray-900 bg-gray-100;
 }
 
+/* src/index.css hoặc src/globals.css */
+body {
+  overflow-y: scroll; /* Để đảm bảo rằng nó cuộn, nhưng sau đó ẩn thanh */
+}
+
+/* Ẩn thanh cuộn cho Webkit browsers (Chrome, Safari, Edge Chromium) */
+body::-webkit-scrollbar {
+  width: 0; /* Chiều rộng của thanh cuộn */
+  background: transparent; /* Màu nền của thanh cuộn */
+}
