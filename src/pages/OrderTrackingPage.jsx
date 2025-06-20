@@ -109,11 +109,18 @@ const OrderTrackingPage = () => {
 
     const getStatusColor = (status) => {
         switch(status) {
-            case "delivered": return "green";
-            case "delivering": return "blue";
-            case "processing": return "orange";
+            case "delivered": return "green"; // Đã giao - màu xanh lá
+            case "delivering": return "yellow"; // Đang giao - màu vàng (thay vì blue)
+            case "processing": return "orange"; // Đang xử lý - màu cam
             default: return "gray";
         }
+    };
+
+    // Thêm hàm mới để xác định màu cho trạng thái thanh toán
+    const getPaymentStatusColor = (isPaid, status) => {
+        if (!isPaid) return "orange"; // Chờ thanh toán - màu cam
+        if (status === "delivered") return "green"; // Đã giao + Đã thanh toán - màu xanh lá
+        return getStatusColor(status); // Các trường hợp khác theo status
     };
 
     const getStatusText = (status) => {
@@ -195,7 +202,11 @@ const OrderTrackingPage = () => {
                                     title={
                                         <div className="flex items-center space-x-2">
                                             <span>{tab.label}</span>
-                                            <Chip size="sm" variant="flat" color="default">
+                                            <Chip 
+                                                size="sm" 
+                                                variant="flat"
+                                                color={tab.key === "delivered" ? "success" : tab.key === "delivering" ? "warning" : tab.key === "processing" ? "warning" : "default"}
+                                            >
                                                 {getOrderCount(tab.key)}
                                             </Chip>
                                         </div>
@@ -216,10 +227,37 @@ const OrderTrackingPage = () => {
                                                     <span className="text-sm text-gray-500">Người tạo đơn hàng</span>
                                                     <span className="text-sm text-gray-500">{order.orderCode}</span>
                                                 </div>
-                                                <div className={`flex items-center text-${getStatusColor(order.status)}-500 font-semibold text-sm`}>
-                                                    <span className={`w-2 h-2 bg-${getStatusColor(order.status)}-500 rounded-full mr-1`}></span> 
-                                                    {order.isPaid ? order.paymentStatus : "Chờ thanh toán"}
-                                                </div>
+                                                
+                                                {/* Thay thế đoạn code hiển thị trạng thái */}
+                                                {(() => {
+                                                    const paymentColor = getPaymentStatusColor(order.isPaid, order.status);
+                                                    const paymentColorClass = {
+                                                        green: "text-green-500",
+                                                        yellow: "text-yellow-500",
+                                                        orange: "text-orange-500",
+                                                        gray: "text-gray-500"
+                                                    }[paymentColor];
+                                                    
+                                                    const dotColorClass = {
+                                                        green: "bg-green-500",
+                                                        yellow: "bg-yellow-500",
+                                                        orange: "bg-orange-500",
+                                                        gray: "bg-gray-500"
+                                                    }[paymentColor];
+                                                    
+                                                    return (
+                                                        <div className={`flex items-center ${paymentColorClass} font-semibold text-sm`}>
+                                                            <span className={`w-2 h-2 ${dotColorClass} rounded-full mr-1`}></span> 
+                                                            {!order.isPaid 
+                                                                ? "Chờ thanh toán" 
+                                                                : order.status === "delivered" 
+                                                                    ? "Đã giao" 
+                                                                    : order.status === "delivering" 
+                                                                        ? "Đang giao" 
+                                                                        : "Đang xử lý"}
+                                                        </div>
+                                                    );
+                                                })()}
                                             </div>
 
                                             <Divider className="mb-4" />
