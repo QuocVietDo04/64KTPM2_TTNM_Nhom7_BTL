@@ -105,6 +105,17 @@ const CheckoutPage = () => {
             const hasErrors = Object.values(newErrors).some((error) => error !== "");
 
             if (hasErrors) {
+                // Tìm trường đầu tiên có lỗi và focus vào nói
+                const firstErrorField = Object.keys(newErrors).find((key) => newErrors[key] !== "");
+
+                // Focus vào trường đầu tiên có lỗi (tùy chọn)
+                setTimeout(() => {
+                    const inputElement = document.querySelector(`[name="${firstErrorField}"]`);
+                    if (inputElement) {
+                        inputElement.focus();
+                    }
+                }, 100);
+                
                 return;
             }
 
@@ -130,7 +141,7 @@ const CheckoutPage = () => {
             return;
         }
 
-        // Xử lý thanh toán tiền mặt hoặc các phương thức khác
+        // Xử lý thanh toán tiền mặt
         setIsProcessing(true);
 
         try {
