@@ -77,22 +77,23 @@ const OrderHistory = () => {
         navigate('/');
     };
 
+    // Định nghĩa các mục menu
     const menuItems = [
-        { key: 'profile', label: 'Thông tin cá nhân', icon: 'mdi:account' },
-        { key: 'address', label: 'Sổ địa chỉ nhận hàng', icon: 'mdi:map-marker' },
-        { key: 'tracking', label: 'Theo dõi đơn hàng', icon: 'mdi:truck' },
-        { key: 'history', label: 'Lịch sử mua hàng', icon: 'mdi:file-document', active: true }
+        { key: 'profile', label: 'Thông tin cá nhân', icon: 'mingcute:user-4-line', path: '/profile' },
+        { key: 'address', label: 'Sổ địa chỉ nhận hàng', icon: 'mingcute:map-pin-line', path: '/shipping-address' },
+        { key: 'tracking', label: 'Theo dõi đơn hàng', icon: 'mingcute:truck-line', path: '/track-order'},
+        { key: 'history', label: 'Lịch sử mua hàng', icon: 'mingcute:history-line', path: '/order-history', active: true  }
     ];
 
     return (
         <div className="flex gap-6">
             {/* Sidebar */}
-            <div className="w-80">
+            <div className="w-1/4">
                 {/* User Info Card */}
                 <Card className="mb-6 h-52">
                     <CardBody className="bg-gradient-to-br from-blue-500 to-blue-600 text-white text-center">
                         <Avatar
-                            icon={<Icon icon="mdi:account" className="w-8 h-8" />}
+                            icon={<Icon icon="mdi:account" className="w-8 h-8 text-white" />}
                             className="w-16 h-16 bg-white/20 mx-auto mb-3"
                         />
                         <h3 className="text-lg font-semibold">Đỗ Quốc Việt</h3>
@@ -102,14 +103,16 @@ const OrderHistory = () => {
 
                 {/* Sidebar Menu */}
                 <Card>
-                    <CardBody className="p-2">
+                    <CardBody className="space-y-2">
                         {menuItems.map((item) => (
                             <Button
                                 key={item.key}
+                                size="lg"
                                 variant={item.active ? "flat" : "light"}
                                 color={item.active ? "primary" : "default"}
-                                className={`w-full justify-start mb-1 ${item.active ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
-                                startContent={<Icon icon={item.icon} className="w-4 h-4" />}
+                                className={`w-full justify-start ${item.active ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+                                startContent={<Icon icon={item.icon} className="w-6 h-6" />}
+                                onClick={() => navigate(item.path)}
                             >
                                 {item.label}
                             </Button>
@@ -119,7 +122,7 @@ const OrderHistory = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 h-fit">
+            <div className="w-3/4">
                 <Card className="h-full">
                     <CardHeader className="flex justify-between items-center pb-4">
                         <h1 className="text-2xl font-bold text-gray-800">LỊCH SỬ ĐẶT HÀNG</h1>

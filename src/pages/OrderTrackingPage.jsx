@@ -40,7 +40,7 @@ const OrderTrackingPage = () => {
                 {
                     id: 1,
                     name: "QUẦN DÀI HẰNG KÉO CLB TẬP BẰNG NẮP LAZADA TIM MOCCH PLATFORM MONGOL PHAB6 TI6",
-                    image: "src/assets/images/product-placeholder.png",
+                    image: "src/assets/images/medicine_img/1.webp",
                     price: 210000,
                     quantity: 1,
                     unit: "Chiếc",
@@ -64,7 +64,7 @@ const OrderTrackingPage = () => {
                 {
                     id: 2,
                     name: "GIÀY GIỜ CHUIAHANG THE THẢO CUA TỪ MANN VU DUY HUNG GẤY NHẤT HÀNH THÌN TRỐK Ô",
-                    image: "src/assets/images/product-placeholder.png",
+                    image: "src/assets/images/medicine_img/2.webp",
                     price: 320000,
                     quantity: 1,
                     unit: "Đôi",
@@ -133,31 +133,32 @@ const OrderTrackingPage = () => {
     };
 
     return (
-        <div className="flex gap-6 p-6 bg-gray-50 min-h-screen">
+        <div className="flex gap-6">
             {/* Sidebar */}
-            <div className="w-80">
+            <div className="w-1/4">
                 {/* User Info Card */}
                 <Card className="mb-6 h-52">
                     <CardBody className="bg-gradient-to-br from-blue-500 to-blue-600 text-white text-center">
                         <Avatar
-                            icon={<Icon icon="mingcute:user-4-fill" className="w-8 h-8" />}
+                            icon={<Icon icon="mdi:account" className="w-8 h-8 text-white" />}
                             className="w-16 h-16 bg-white/20 mx-auto mb-3"
                         />
-                        <h3 className="text-lg font-semibold">{userInfo.name}</h3>
-                        <p className="text-sm opacity-90">{userInfo.phone}</p>
+                        <h3 className="text-lg font-semibold">Đỗ Quốc Việt</h3>
+                        <p className="text-sm opacity-90">0981402187</p>
                     </CardBody>
                 </Card>
 
                 {/* Sidebar Menu */}
                 <Card>
-                    <CardBody className="p-2">
+                    <CardBody className="space-y-2">
                         {menuItems.map((item) => (
                             <Button
                                 key={item.key}
+                                size="lg"
                                 variant={item.active ? "flat" : "light"}
                                 color={item.active ? "primary" : "default"}
-                                className={`w-full justify-start mb-1 ${item.active ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
-                                startContent={<Icon icon={item.icon} className="w-4 h-4" />}
+                                className={`w-full justify-start ${item.active ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+                                startContent={<Icon icon={item.icon} className="w-6 h-6" />}
                                 onClick={() => navigate(item.path)}
                             >
                                 {item.label}
@@ -168,7 +169,7 @@ const OrderTrackingPage = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 h-fit">
+            <div className="w-3/4">
                 <Card className="h-full">
                     <CardHeader className="flex justify-between items-center pb-4">
                         <h1 className="text-2xl font-bold text-gray-800">TRẠNG THÁI ĐƠN HÀNG</h1>

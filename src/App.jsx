@@ -12,6 +12,8 @@ import CheckoutPage from './pages/CheckoutPage';
 import PaymentPage from './pages/PaymentPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
 import OrderTrackingPage from './pages/OrderTrackingPage';
+import ProfilePage from './pages/ProfilePage';
+import ShippingAddressPage from './pages/ShippingAddressPage';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           {/* Route này sẽ tự động nhận state từ navigation và truyền xuống CheckoutPage */}
           <Route path="/order-tracking" element={<OrderTrackingPage />} />
           <Route path="/track-order" element={<OrderTrackingPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/shipping-address" element={<ShippingAddressPage />} />
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<DashboardPage />} /> */}
