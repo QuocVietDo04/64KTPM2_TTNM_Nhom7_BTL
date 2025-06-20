@@ -9,6 +9,7 @@ import OrderHistory from './pages/OrderHistory';
 import CheckoutPage from './pages/CheckoutPage';
 import PaymentPage from './pages/PaymentPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
+import OrderTrackingPage from './pages/OrderTrackingPage';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
           {/* Route này sẽ tự động nhận state từ navigation và truyền xuống CheckoutPage */}
+          <Route path="/order-tracking" element={<OrderTrackingPage />} />
+          <Route path="/track-order" element={<OrderTrackingPage />} />
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<DashboardPage />} /> */}

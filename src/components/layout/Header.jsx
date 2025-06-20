@@ -76,18 +76,18 @@ const Header = () => {
                     {/* Center */}
                     <div className="flex flex-col flex-1 gap-4">
                         <Input
-                            placeholder="Tìm kiếm"
+                            placeholder="Bạn đang tìm kiếm gì hôm nay thế..."
                             size="lg"
                             radius="sm"
                             startContent={<Icon icon="mingcute:search-3-line" className="text-sky-600 w-7 h-7" />}
                         />
                         <div className="flex gap-4 px-4 py-1 items-center text-[15px] text-white">
-                            <span>Omega 3</span>
-                            <span>Canxi</span>
-                            <span>Chống lão hóa</span>
-                            <span>Sữa rửa mặt</span>
-                            <span>Dung dịch vệ sinh</span>
-                            <span>Kem chống năng</span>
+                            <span>Sản phẩm 1</span>
+                            <span>Sản phẩm 1</span>
+                            <span>Sản phẩm 1</span>
+                            <span>Sản phẩm 1</span>
+                            <span>Sản phẩm 1</span>
+                            <span>Sản phẩm 1</span>
                         </div>
                     </div>
 

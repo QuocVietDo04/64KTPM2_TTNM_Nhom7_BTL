@@ -134,10 +134,10 @@ const Footer = () => {
                         <div className="flex flex-col gap-2">
                             <p className="font-bold text-base">TẢI ỨNG DỤNG TẠI ĐÂY</p>
                             <div className="flex gap-2 items-center">
-                                <img src="src\assets\images\install\qr-install.svg" alt="qr" />
+                                <img src="src/assets/images/install/qr-install.svg" alt="qr" />
                                 <div className="flex flex-col gap-2">
-                                    <img src="src\assets\images\install\google-play.svg" alt="google-play" />
-                                    <img src="src\assets\images\install\app-store.svg" alt="app-store" />
+                                    <img src="src/assets/images/install/google-play.svg" alt="google-play" />
+                                    <img src="src/assets/images/install/app-store.svg" alt="app-store" />
                                 </div>
                             </div>
                         </div>
