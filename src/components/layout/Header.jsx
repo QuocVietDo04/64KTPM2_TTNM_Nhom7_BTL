@@ -12,7 +12,7 @@ const Header = () => {
         if (e.key === 'Enter') {
             const keyword = searchTerm.trim().toLowerCase();
             if (keyword === 'omega 3') {
-                navigate('/');
+                navigate('/search-result');
             } else {
                 navigate('/not-found');
             }
