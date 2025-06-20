@@ -1,27 +1,41 @@
 import React, { useState } from "react";
-import { Button } from "@heroui/react";
+import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import {
+    Card,
+    CardBody,
+    CardHeader,
+    Input,
+    Button,
+    Tabs,
+    Tab,
+    Avatar,
+    Chip,
+    Divider
+} from "@heroui/react";
 
 const OrderTrackingPage = () => {
-    // State để theo dõi tab đang được chọn
     const [activeTab, setActiveTab] = useState("all");
-    
+    const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
+
     // Thông tin người dùng
     const userInfo = {
-        name: "Quốc Bình",
-        phone: "0378958138",
+        name: "Đỗ Quốc Việt",
+        phone: "0981402187",
     };
     
     // Mẫu dữ liệu đơn hàng
     const orders = [
         {
-            id: "25/4/2025",
+            id: "#8822312",
             date: "25/4/2025",
             time: "10:30:45",
             orderCode: "#8822312",
             status: "delivered", // đã giao
             statusText: "Đã giao",
             isPaid: false,
+            paymentStatus: "Chờ thanh toán",
             items: [
                 {
                     id: 1,
@@ -29,21 +43,23 @@ const OrderTrackingPage = () => {
                     image: "src/assets/images/product-placeholder.png",
                     price: 210000,
                     quantity: 1,
+                    unit: "Chiếc",
                     isDelivered: true,
                 }
             ],
-            total: 210000,
+            total: "45.000đ",
             shippingFee: 30000,
             displayPrice: "20.000đ"
         },
         {
-            id: "20/4/2025",
+            id: "#9342488",
             date: "20/4/2025",
             time: "11:45:23",
             orderCode: "#9342488",
             status: "delivering", // đang giao
             statusText: "Đang giao",
-            isPaid: false,
+            isPaid: true,
+            paymentStatus: "Đã thanh toán",
             items: [
                 {
                     id: 2,
@@ -51,193 +67,224 @@ const OrderTrackingPage = () => {
                     image: "src/assets/images/product-placeholder.png",
                     price: 320000,
                     quantity: 1,
+                    unit: "Đôi",
                     isDelivered: false,
                 }
             ],
-            total: 320000,
+            total: "32.500đ",
             shippingFee: 0,
-            displayPrice: "2.300đ"
+            displayPrice: "32.500đ"
         }
     ];
     
-    // Lọc đơn hàng theo tab được chọn
+    // Lọc đơn hàng theo tab và tìm kiếm
     const getFilteredOrders = () => {
-        switch(activeTab) {
-            case "processing":
-                return orders.filter(order => order.status === "processing");
-            case "delivering":
-                return orders.filter(order => order.status === "delivering");
-            case "delivered":
-                return orders.filter(order => order.status === "delivered");
-            default:
-                return orders;
+        return orders.filter(order => {
+            const matchesTab = activeTab === "all" || order.status === activeTab;
+            const matchesSearch = searchQuery === "" || 
+                order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                order.items.some(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+            
+            return matchesTab && matchesSearch;
+        });
+    };
+
+    // Lấy số lượng đơn hàng cho từng trạng thái
+    const getOrderCount = (status) => {
+        if (status === "all") return orders.length;
+        return orders.filter(order => order.status === status).length;
+    };
+
+    const handleGoHome = () => {
+        navigate('/');
+    };
+
+    // Định nghĩa các mục menu
+    const menuItems = [
+        { key: 'profile', label: 'Thông tin cá nhân', icon: 'mingcute:user-4-line', path: '/profile' },
+        { key: 'address', label: 'Sổ địa chỉ nhận hàng', icon: 'mingcute:map-pin-line', path: '/shipping-address' },
+        { key: 'tracking', label: 'Theo dõi đơn hàng', icon: 'mingcute:truck-line', path: '/track-order', active: true },
+        { key: 'history', label: 'Lịch sử mua hàng', icon: 'mingcute:history-line', path: '/order-history' }
+    ];
+
+    const getStatusColor = (status) => {
+        switch(status) {
+            case "delivered": return "green";
+            case "delivering": return "blue";
+            case "processing": return "orange";
+            default: return "gray";
+        }
+    };
+
+    const getStatusText = (status) => {
+        switch(status) {
+            case "delivered": return "Đã giao";
+            case "delivering": return "Đang giao";
+            case "processing": return "Đang xử lý";
+            default: return "Không xác định";
         }
     };
 
     return (
-        <div className="py-4 bg-gray-50">
-            <div className="max-w-[1280px] mx-auto">
-                {/* Container chính */}
-                <div className="bg-white rounded-md overflow-hidden shadow-sm">
-                    <div className="flex">
-                        {/* Sidebar trái */}
-                        <div className="w-[230px] min-h-[600px] bg-white border-r border-gray-200">
-                            {/* User card */}
-                            <div className="bg-blue-600 text-white text-center py-6 px-4">
-                                <div className="w-20 h-20 bg-blue-500 rounded-full mx-auto flex items-center justify-center">
-                                    <Icon icon="mingcute:user-4-fill" className="text-white w-10 h-10" />
-                                </div>
-                                <div className="font-medium text-lg mt-2">Quốc Bình</div>
-                                <div className="text-sm text-blue-100">0378958138</div>
-                            </div>
-                            
-                            {/* Menu */}
-                            <div className="py-2">
-                                <a href="#" className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50">
-                                    <Icon icon="mingcute:user-4-line" className="w-5 h-5 mr-3 text-gray-500" />
-                                    Thông tin cá nhân
-                                </a>
-                                <a href="#" className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50">
-                                    <Icon icon="mingcute:map-pin-line" className="w-5 h-5 mr-3 text-gray-500" />
-                                    Số địa chỉ nhận hàng
-                                </a>
-                                <a href="#" className="flex items-center px-4 py-3 text-blue-600 bg-blue-50 font-medium">
-                                    <Icon icon="mingcute:document-line" className="w-5 h-5 mr-3 text-blue-600" />
-                                    Theo dõi đơn hàng
-                                </a>
-                                <a href="#" className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50">
-                                    <Icon icon="mingcute:time-line" className="w-5 h-5 mr-3 text-gray-500" />
-                                    Lịch sử mua hàng
-                                </a>
-                            </div>
-                        </div>
-                        
-                        {/* Nội dung chính */}
-                        <div className="flex-1 p-6">
-                            <h1 className="text-xl font-medium mb-4">Trạng thái đơn hàng</h1>
-                            
-                            {/* Thanh tìm kiếm */}
-                            <div className="mb-6">
-                                <div className="relative">
-                                    <input 
-                                        type="text" 
-                                        placeholder="Tìm tên đơn, mã đơn, hoặc tên sản phẩm..." 
-                                        className="w-full border border-gray-200 rounded-md py-2 px-4 pr-10"
-                                    />
-                                    <button className="absolute right-3 top-2.5">
-                                        <Icon icon="mingcute:search-line" className="w-5 h-5 text-gray-400" />
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            {/* Tabs */}
-                            <div className="flex border-b border-gray-200 mb-6">
-                                <button 
-                                    className={`px-4 py-3 font-medium ${activeTab === "all" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
-                                    onClick={() => setActiveTab("all")}
-                                >
-                                    Tất cả
-                                </button>
-                                <button 
-                                    className={`px-4 py-3 font-medium ${activeTab === "processing" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
-                                    onClick={() => setActiveTab("processing")}
-                                >
-                                    Đang xử lý
-                                </button>
-                                <button 
-                                    className={`px-4 py-3 font-medium ${activeTab === "delivering" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
-                                    onClick={() => setActiveTab("delivering")}
-                                >
-                                    Đang giao
-                                </button>
-                                <button 
-                                    className={`px-4 py-3 font-medium ${activeTab === "delivered" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
-                                    onClick={() => setActiveTab("delivered")}
-                                >
-                                    Đã giao
-                                </button>
-                            </div>
-                            
-                            {/* Danh sách đơn hàng */}
-                            <div className="space-y-6">
-                                {getFilteredOrders().map((order) => (
-                                    <div key={order.id} className="mb-6 border border-gray-100 rounded-md overflow-hidden">
-                                        {/* Header đơn hàng */}
-                                        <div className="flex justify-between items-center bg-gray-50 py-2 px-4 border-b border-gray-100">
-                                            <div>
-                                                <span className="font-medium">Đơn hàng {order.date}</span>
-                                                <span className="text-xs text-gray-400 ml-4">Người tạo đơn hàng</span>
-                                                <span className="text-xs text-gray-400 ml-4">{order.orderCode}</span>
-                                            </div>
-                                            <div>
-                                                {order.status === "delivered" ? (
-                                                    <span className="text-xs font-medium text-orange-500 flex items-center">
-                                                        <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-1"></span>
-                                                        Chờ thanh toán
-                                                    </span>
-                                                ) : (
-                                                    <span className="text-xs font-medium text-green-500 flex items-center">
-                                                        <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
-                                                        Đã giao
-                                                    </span>
-                                                )}
-                                            </div>
+        <div className="flex gap-6 p-6 bg-gray-50 min-h-screen">
+            {/* Sidebar */}
+            <div className="w-80">
+                {/* User Info Card */}
+                <Card className="mb-6 h-52">
+                    <CardBody className="bg-gradient-to-br from-blue-500 to-blue-600 text-white text-center">
+                        <Avatar
+                            icon={<Icon icon="mingcute:user-4-fill" className="w-8 h-8" />}
+                            className="w-16 h-16 bg-white/20 mx-auto mb-3"
+                        />
+                        <h3 className="text-lg font-semibold">{userInfo.name}</h3>
+                        <p className="text-sm opacity-90">{userInfo.phone}</p>
+                    </CardBody>
+                </Card>
+
+                {/* Sidebar Menu */}
+                <Card>
+                    <CardBody className="p-2">
+                        {menuItems.map((item) => (
+                            <Button
+                                key={item.key}
+                                variant={item.active ? "flat" : "light"}
+                                color={item.active ? "primary" : "default"}
+                                className={`w-full justify-start mb-1 ${item.active ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+                                startContent={<Icon icon={item.icon} className="w-4 h-4" />}
+                                onClick={() => navigate(item.path)}
+                            >
+                                {item.label}
+                            </Button>
+                        ))}
+                    </CardBody>
+                </Card>
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1 h-fit">
+                <Card className="h-full">
+                    <CardHeader className="flex justify-between items-center pb-4">
+                        <h1 className="text-2xl font-bold text-gray-800">TRẠNG THÁI ĐƠN HÀNG</h1>
+                        <Input
+                            placeholder="Tìm tên đơn, mã đơn, hoặc tên sản phẩm..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-80"
+                            startContent={<Icon icon="mingcute:search-line" className="w-4 h-4 text-gray-400" />}
+                            variant="bordered"
+                        />
+                    </CardHeader>
+
+                    <CardBody>
+                        {/* Status Tabs */}
+                        <Tabs
+                            selectedKey={activeTab}
+                            onSelectionChange={setActiveTab}
+                            variant="underlined"
+                            color="primary"
+                            className="mb-6"
+                        >
+                            {[
+                                { key: 'all', label: 'Tất cả' },
+                                { key: 'processing', label: 'Đang xử lý' },
+                                { key: 'delivering', label: 'Đang giao' },
+                                { key: 'delivered', label: 'Đã giao' }
+                            ].map(tab => (
+                                <Tab
+                                    key={tab.key}
+                                    title={
+                                        <div className="flex items-center space-x-2">
+                                            <span>{tab.label}</span>
+                                            <Chip size="sm" variant="flat" color="default">
+                                                {getOrderCount(tab.key)}
+                                            </Chip>
                                         </div>
-                                        
-                                        {/* Chi tiết đơn hàng */}
-                                        <div className="py-4 px-4">
+                                    }
+                                />
+                            ))}
+                        </Tabs>
+
+                        {/* Orders List */}
+                        <div className="space-y-4">
+                            {getFilteredOrders().length > 0 ? (
+                                getFilteredOrders().map((order) => (
+                                    <Card key={order.id} className="shadow-sm hover:shadow-md transition-shadow">
+                                        <CardBody>
+                                            <div className="flex items-center justify-between mb-4">
+                                                <div className="flex items-center space-x-2">
+                                                    <span className="font-semibold text-gray-800">Đơn hàng {order.date}</span>
+                                                    <span className="text-sm text-gray-500">Người tạo đơn hàng</span>
+                                                    <span className="text-sm text-gray-500">{order.orderCode}</span>
+                                                </div>
+                                                <div className={`flex items-center text-${getStatusColor(order.status)}-500 font-semibold text-sm`}>
+                                                    <span className={`w-2 h-2 bg-${getStatusColor(order.status)}-500 rounded-full mr-1`}></span> 
+                                                    {order.isPaid ? order.paymentStatus : "Chờ thanh toán"}
+                                                </div>
+                                            </div>
+
+                                            <Divider className="mb-4" />
+
                                             {order.items.map((item) => (
-                                                <div key={item.id} className="flex">
-                                                    <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden">
-                                                        <img 
-                                                            src={item.image || "https://via.placeholder.com/100?text=VH"} 
-                                                            alt={item.name} 
-                                                            className="w-full h-full object-contain" 
-                                                            onError={(e) => {
-                                                                e.target.onerror = null; 
-                                                                e.target.src = "https://via.placeholder.com/100?text=VH"
-                                                            }}
-                                                        />
+                                                <div key={item.id} className="grid grid-cols-[auto_1fr_auto] gap-x-4 items-start mb-4">
+                                                    <img
+                                                        src={item.image}
+                                                        alt={item.name}
+                                                        className="w-16 h-16 object-contain rounded-lg flex-shrink-0 bg-gray-50"
+                                                        onError={(e) => {
+                                                            e.target.onerror = null; 
+                                                            e.target.src = "https://via.placeholder.com/100?text=VH"
+                                                        }}
+                                                    />
+                                                    <div className="flex flex-col">
+                                                        <h3 className="font-medium text-gray-800 leading-tight">
+                                                            {item.name}
+                                                        </h3>
                                                     </div>
-                                                    <div className="ml-4 flex-1">
-                                                        <h3 className="text-sm font-medium">{item.name}</h3>
-                                                        <div className="text-xs text-gray-500 mt-1">Số lượng: 01</div>
-                                                    </div>
-                                                    <div className="ml-4">
-                                                        <div className="text-xs text-gray-400 line-through">SL: 01</div>
-                                                        <div className="text-sm font-medium mt-1">{order.displayPrice}</div>
+                                                    <div className="flex flex-col items-end">
+                                                        <span className="text-lg font-semibold text-gray-800">{order.displayPrice}</span>
+                                                        <span className="text-sm text-gray-500">x{item.quantity} {item.unit || "Sản phẩm"}</span>
                                                     </div>
                                                 </div>
                                             ))}
-                                        </div>
-                                        
-                                        {/* Footer đơn hàng */}
-                                        <div className="bg-gray-50 py-3 px-4 flex justify-between items-center">
-                                            <div>
-                                                <span className="text-sm font-medium">
-                                                    Thành tiền: <span className="text-blue-600">
-                                                        {order.status === "delivered" ? "45.000đ" : "32.500đ"}
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <button className="bg-blue-600 text-white rounded-md px-6 py-2 text-sm">
+                                            
+                                            <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                                                <div className="font-medium">
+                                                    Thành tiền: <span className="text-blue-600 font-semibold">{order.total}</span>
+                                                </div>
+                                                <Button
+                                                    color="primary"
+                                                    className="font-medium px-6"
+                                                >
                                                     {order.status === "delivered" ? "Liên hệ shop" : "Mua lại"}
-                                                </button>
+                                                </Button>
                                             </div>
+                                        </CardBody>
+                                    </Card>
+                                ))
+                            ) : (
+                                <Card className="text-center py-0">
+                                    <CardBody>
+                                        <img src="/src/assets/images/order-not-found.svg" className="w-80 h-80 mx-auto text-gray-300 mb-0" />
+                                        <div className="text-center max-w-md mx-auto">
+                                            <h3 className="text-xl font-semibold text-gray-800 mb-1">Không tìm thấy đơn hàng nào</h3>
+                                            <p className="text-gray-500 mb-1">Bạn có thể tìm kiếm theo mã đơn hàng<br />hoặc tên sản phẩm</p>
                                         </div>
-                                    </div>
-                                ))}
-                                
-                                {getFilteredOrders().length === 0 && (
-                                    <div className="text-center p-8 bg-white rounded-md border border-gray-100">
-                                        <p className="text-gray-500">Không tìm thấy đơn hàng nào</p>
-                                    </div>
-                                )}
-                            </div>
+                                        <div className="flex justify-center">
+                                            <Button
+                                                color="primary"
+                                                size="lg"
+                                                className="font-medium px-8 rounded-full"
+                                                onClick={handleGoHome}
+                                            >
+                                                Khám phá sản phẩm
+                                            </Button>
+                                        </div>
+                                    </CardBody>
+                                </Card>
+                            )}
                         </div>
-                    </div>
-                </div>
+                    </CardBody>
+                </Card>
             </div>
         </div>
     );
