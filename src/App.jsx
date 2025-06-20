@@ -4,8 +4,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 
 // Import các trang (pages) ở đây
-import HomePage from './pages/SearchResultPage';
-import NotFound from './pages/NotFoundPage'; // ✅ Thêm dòng này
+import HomePage from './pages/HomePage';
+import SearchResultPage from './pages/SearchResultPage';
+import NotFoundPage from './pages/NotFoundPage'; // ✅ Thêm dòng này
+import OrderHistory from './pages/OrderHistory';
+import CheckoutPage from './pages/CheckoutPage';
+import PaymentPage from './pages/PaymentPage';
+import OrderSuccessPage from './pages/OrderSuccessPage';
 
 function App() {
   return (
@@ -14,14 +19,19 @@ function App() {
         <Routes> {/* Routes định nghĩa các tuyến đường khác nhau */}
           {/* Định nghĩa các Route cho từng trang */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/not-found" element={<NotFound />} /> {/* ✅ Thêm dòng này */}
-
+          <Route path="/search-result" element={<SearchResultPage />} />
+          <Route path="/not-found" element={<NotFoundPage />} /> {/* ✅ Thêm dòng này */}
+          <Route path="/order-history" element={<OrderHistory />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/order-success" element={<OrderSuccessPage />} />
+          {/* Route này sẽ tự động nhận state từ navigation và truyền xuống CheckoutPage */}
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<DashboardPage />} /> */}
 
           {/* Bạn có thể thêm một Route catch-all cho trang 404 */}
-          {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
         </Routes>
       </Layout>
     </Router>
