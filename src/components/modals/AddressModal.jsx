@@ -16,8 +16,8 @@ const AddressModal = ({ isOpen, onClose, onSelectAddress }) => {
         },
         {
             id: "address2",
-            name: "Đỗ Quốc Việt",
-            phone: "0862989970",
+            name: "Đỗ Viết Cuộc",
+            phone: "0123456789",
             address: "Số 09 Xóm VH2, Thôn Đức Trạch, Xã Quất Động, Huyện Thường Tín, Thành phố Hà Nội",
             isDefault: false
         }
