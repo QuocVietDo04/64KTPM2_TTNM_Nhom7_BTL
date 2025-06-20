@@ -6,6 +6,19 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearchKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            const keyword = searchTerm.trim().toLowerCase();
+            if (keyword === 'omega 3') {
+                navigate('/search-result');
+            } else {
+                navigate('/not-found');
+            }
+        }
+    };
+
     const [isHovered, setIsHovered] = useState(false);
     const [isDropdownHovered, setIsDropdownHovered] = useState(false);
     const navigate = useNavigate();
@@ -79,15 +92,18 @@ const Header = () => {
                             placeholder="Bạn đang tìm kiếm gì hôm nay thế..."
                             size="lg"
                             radius="sm"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={handleSearchKeyDown}
                             startContent={<Icon icon="mingcute:search-3-line" className="text-sky-600 w-7 h-7" />}
                         />
                         <div className="flex gap-4 px-4 py-1 items-center text-[15px] text-white">
-                            <span>Sản phẩm 1</span>
-                            <span>Sản phẩm 1</span>
-                            <span>Sản phẩm 1</span>
-                            <span>Sản phẩm 1</span>
-                            <span>Sản phẩm 1</span>
-                            <span>Sản phẩm 1</span>
+                            <span>Omega 3</span>
+                            <span>Canxi</span>
+                            <span>Chống lão hóa</span>
+                            <span>Sữa rửa mặt</span>
+                            <span>Dung dịch vệ sinh</span>
+                            <span>Kem chống nắng</span>
                         </div>
                     </div>
 

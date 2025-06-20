@@ -5,6 +5,8 @@ import Layout from './components/layout/Layout';
 
 // Import các trang (pages) ở đây
 import HomePage from './pages/HomePage';
+import SearchResultPage from './pages/SearchResultPage';
+import NotFoundPage from './pages/NotFoundPage'; // ✅ Thêm dòng này
 import OrderHistory from './pages/OrderHistory';
 import CheckoutPage from './pages/CheckoutPage';
 import PaymentPage from './pages/PaymentPage';
@@ -18,6 +20,8 @@ function App() {
         <Routes> {/* Routes định nghĩa các tuyến đường khác nhau */}
           {/* Định nghĩa các Route cho từng trang */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/search-result" element={<SearchResultPage />} />
+          <Route path="/not-found" element={<NotFoundPage />} /> {/* ✅ Thêm dòng này */}
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/payment" element={<PaymentPage />} />
